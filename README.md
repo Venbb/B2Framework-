@@ -2,7 +2,7 @@
 
 ## 目录结构
 
-![image-20200507173919966](https://github.com/Venbb/B2Framework/tree/master/img/image-20200507173919966.png)
+![](https://github.com/Venbb/B2Framework/blob/master/img/image-20200507173919966.png)
 
 ## 参考框架
 
