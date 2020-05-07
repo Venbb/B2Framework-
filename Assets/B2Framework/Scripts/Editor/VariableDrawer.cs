@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEditor;
 using B2Framework;
-using B2Framework.UI;
 
 namespace B2Editor
 {

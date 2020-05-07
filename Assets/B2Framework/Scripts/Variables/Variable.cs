@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace B2Framework.UI
+namespace B2Framework
 {
     [System.Serializable]
     public enum VariableType

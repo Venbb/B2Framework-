@@ -2,7 +2,7 @@
 
 ## 目录结构
 
-![image-20200507173919966](C:\workspace\u3d\projects\b2clientframework\B2Framework_XLua\img\image-20200507173919966.png)
+![image-20200507173919966](C:\workspace\u3d\projects\B2Framework\img\image-20200507173919966.png)
 
 ## 参考框架
 

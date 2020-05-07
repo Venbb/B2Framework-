@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-namespace B2Framework.UI
+namespace B2Framework
 {
     [System.Serializable]
     public class VariableList

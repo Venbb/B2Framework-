@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
-using B2Framework.UI;
+using B2Framework;
 
 namespace B2Editor
 {
