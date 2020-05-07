@@ -4,7 +4,7 @@
 
 ![](https://github.com/Venbb/B2Framework/blob/master/img/image-20200507173919966.png)
 
-* Arts 本地资源目录，存放<font color=#00ffff size=72>不热更</font>的所有资源，目录结构与AssetBundles 目录基本一致，一般由美术、策划、程序人员参与管理
+* Arts 本地资源目录，存放<font color=#ff0000>不热更</font>的所有资源，目录结构与AssetBundles 目录基本一致，一般由美术、策划、程序人员参与管理
   * Animations 动画文件，按照功能在该目录创建子目录自行管理
   * Fonts 游戏中使用的字体
   * Materials 所有的材质
@@ -43,7 +43,7 @@
     * UI 界面相关逻辑
   * Utils 公用的工具类放这里
 * 其它都为第三方扩展库文件，或Unity引擎原生目录
-* ${color=#ff0000}{严禁横向增加目录，只能扩展子目录}$
+* <font color=#ff0000>严禁横向增加目录，只能扩展子目录</font>
 
 ## 参考框架
 
