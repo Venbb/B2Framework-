@@ -231,16 +231,7 @@ namespace CSObjectWrapEditor
                         hasValidGenericParameter = true;
                     }
                     else if (parameterType != extendedType)
-                    {
-                        //modify by shaco 2020/04/03
-                        //使xlua支持string扩展方法自动作为static方法导出使用
-                        //第一个参数为string的时候支持直接导出方法，否则lua无法访问string的扩展方法的
-                        if (method.ReflectedType != extendedType || parameterType != typeof(string))
-                        {
-                            return false;
-                        }
-                        //modify end
-                    }
+                        return false;
                 }
                 else if (parameterType.IsGenericParameter)
                 {
@@ -357,28 +348,12 @@ namespace CSObjectWrapEditor
                         }
                     }
 
-                    //modify by shaco 2020/04/03
-                    //使xlua支持string扩展方法自动作为static方法导出使用
-                    System.Type firstParameterType;
-                    if (overloads[0].IsStatic && overloads.Count > 0)
-                    {
-                        //没有参数的方法是不可能为扩展方法的，至少得有一个this xxx
-                        var parametersTmp = overloads[0].GetParameters();
-                        if (parametersTmp.Length > 0)
-                            firstParameterType = parametersTmp[0].ParameterType;
-                        else
-                            firstParameterType = typeof(object);
-                    }
-                    else
-                        firstParameterType = typeof(object);
-                    return new
-                    {
+                    return new {
                         Name = k,
-                        IsStatic = overloads[0].IsStatic && (firstParameterType == typeof(string) || !isDefined(overloads[0], typeof(ExtensionAttribute)) || firstParameterType.IsInterface),
+                        IsStatic = overloads[0].IsStatic && (!isDefined(overloads[0], typeof(ExtensionAttribute)) || overloads[0].GetParameters()[0].ParameterType.IsInterface),
                         Overloads = overloads,
                         DefaultValues = def_vals
                     };
-                    //modify end
                 }).ToList());
 
             parameters.Set("getters", type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.IgnoreCase | BindingFlags.DeclaredOnly)
@@ -570,96 +545,6 @@ namespace CSObjectWrapEditor
 
             return false;
         }
-
-        //add by shaco xlua begin
-        //检查注入方法中包含UnityEditor的代码，并添加编译宏
-        static void CheckUnityEditorScript(string pathScript, params string[] ignoreNameSpace)
-        {
-            if (ignoreNameSpace.IsNullOrEmpty())
-                return;
-
-            var readScript = shaco.Base.FileHelper.ReadAllByUserPath(pathScript);
-            bool shouldRewriteScript = false;
-            var flagPublic = "public";
-            var insertIfHeader = "\n#if UNITY_EDITOR";
-
-            if (!string.IsNullOrEmpty(readScript))
-            {
-                int startIndex = 0;
-                int loop = 0;
-                while (++loop < 10)
-                {
-                    bool shouldBreak = true;
-                    var currentFlagStartLength = 0;
-                    int indexFindEditor = -1;
-
-                    for (int i = 0; i < ignoreNameSpace.Length; ++i)
-                    {
-                        var findFlagTmp = ignoreNameSpace[i];
-                        indexFindEditor = readScript.IndexOf(findFlagTmp, startIndex);
-                        if (indexFindEditor >= 0)
-                        {
-                            currentFlagStartLength = findFlagTmp.Length;
-                            break;
-                        }
-                    }
-
-                    if (indexFindEditor >= 0)
-                    {
-                        int indexFindReturn = -1;
-                        for (indexFindReturn = indexFindEditor - 1; indexFindReturn >= 0; --indexFindReturn)
-                        {
-                            if (readScript[indexFindReturn] == '\n')
-                            {
-                                break;
-                            }
-                        }
-
-                        if (indexFindReturn == -1)
-                            indexFindReturn = 0;
-
-                        if (indexFindReturn >= 0)
-                        {
-                            //添加编译宏-begin
-                            readScript = readScript.Insert(indexFindReturn, insertIfHeader);
-
-                            //找到下一个public作为函数结束
-                            startIndex = indexFindReturn + insertIfHeader.Length + currentFlagStartLength;
-                            var indexFindPublic = readScript.IndexOf(flagPublic, startIndex);
-
-                            //没有找到public用字符末尾作为结束
-                            if (indexFindPublic == -1)
-                            {
-                                indexFindPublic = readScript[readScript.Length - 1] == '}' ? readScript.Length - 1 : readScript.Length;
-                            }
-
-                            if (indexFindPublic >= 0)
-                            {
-                                //添加编译宏-end
-                                var insertValue = "#endif\n";
-                                readScript = readScript.Insert(indexFindPublic, insertValue);
-
-                                //跳转查找下标
-                                startIndex = indexFindPublic + insertValue.Length;
-                                shouldBreak = false;
-                                shouldRewriteScript = true;
-                            }
-                        }
-                    }
-
-                    if (shouldBreak)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            if (shouldRewriteScript)
-            {
-                shaco.Base.FileHelper.WriteAllByUserPath(pathScript, readScript);
-            }
-        }
-        //add by shaco xlua end
 
         static bool isMethodInBlackList(MethodBase mb)
         {
@@ -1075,10 +960,6 @@ namespace CSObjectWrapEditor
                 type_info.Set("delegates_groups", delegates_groups.ToList());
             }, templateRef.LuaDelegateBridge, textWriter);
             textWriter.Close();
-
-            //add by shaco xlua begin
-            CheckUnityEditorScript(filePath, "UnityEditor");
-            //add by sahco xlua end
         }
 
         static void GenWrapPusher(IEnumerable<Type> types, string save_path)
@@ -1162,10 +1043,8 @@ namespace CSObjectWrapEditor
             if (Directory.Exists(path))
             {
                 Directory.Delete(path, true);
+                AssetDatabase.DeleteAsset(path.Substring(path.IndexOf("Assets") + "Assets".Length));
 
-                //delete by shaco 2019/11/08
-                // AssetDatabase.DeleteAsset(path.Substring(path.IndexOf("Assets") + "Assets".Length));
-                //delete end
                 AssetDatabase.Refresh();
             }
         }
@@ -1770,17 +1649,11 @@ namespace CSObjectWrapEditor
         public static void GenAll()
         {
 #if UNITY_2018 && (UNITY_EDITOR_WIN || UNITY_EDITOR_OSX)
-            //modify by shaco 2019/11/06
-            Debug.Log("Generator GenAll will start");
-            DelegateBridge.Gen_Flag = true;
-            
             if (File.Exists("./Tools/MonoBleedingEdge/bin/mono.exe"))
             {
-                Debug.Log("Generator GenAll not found mono.exe, will GenUsingCLI()");
                 GenUsingCLI();
                 return;
             }
-            //modify end
 #endif
             var start = DateTime.Now;
             Directory.CreateDirectory(GeneratorConfig.common_path);

@@ -197,15 +197,7 @@ local function _CsFullTypeName(t)
         return (t.BaseType == objType or t.BaseType == valueType) and t.Name or _CsFullTypeName(t.BaseType) --TODO:应该判断是否类型约束
     end
 
-    --modify by shaco xlua begin
-    --c#中的扩展方法如果存在泛型回调参数，则FullName会为空，例如System.Func<T> callback
-    local name = nil
-    if (nil == t.FullName) then
-        name = tostring(t):gsub("&", ""):gsub("%+", ".") 
-    else
-        name = t.FullName:gsub("&", ""):gsub("%+", ".") 
-    end
-    --modify by shaco xlua end
+    local name = t.FullName:gsub("&", ""):gsub("%+", ".") 
     if not t.IsGenericType then 
         return friendlyNameMap[name] or name
     end
@@ -285,15 +277,6 @@ function MethodParameters(method)
         return method:GetParameters()
     else
         local parameters = method:GetParameters()
-
-        --modify by shaco 2020/04/03
-        --使xlua支持string扩展方法自动作为static方法导出使用
-        --当第一位参数为string时候直接判定为static方法并返回所有参数
-        if parameters[0].ParameterType == typeof(CS.System.String) then
-            return parameters
-        end
-        --modify end
-        
 		if parameters[0].ParameterType.IsInterface then
 		    return parameters
 		end
