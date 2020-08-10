@@ -26,7 +26,26 @@ namespace B2Framework
             public static bool IsExtension(string path, params string[] extents)
             {
                 if (string.IsNullOrEmpty(path)) return false;
-                return extents.Contains(System.IO.Path.GetExtension(path));
+                var idx = System.Array.FindIndex(extents, ex => path.EndsWith(ex));
+                return idx != -1;
+                // return extents.Contains(System.IO.Path.GetExtension(path));
+            }
+            /// <summary>
+            /// 获取路径扩展名
+            /// </summary>
+            /// <param name="path"></param>
+            /// <param name="extents"></param>
+            /// <returns></returns>
+            public static string GetExtension(string path, params string[] extents)
+            {
+                if (string.IsNullOrEmpty(path)) return string.Empty;
+                if (extents != null && extents.Length > 0)
+                {
+                    var idx = System.Array.FindIndex(extents, ex => path.EndsWith(ex));
+                    return idx != -1 ? extents[idx] : string.Empty;
+                }
+                else
+                    return System.IO.Path.GetExtension(path);
             }
             /// <summary>
             /// 获取全路径
@@ -46,15 +65,6 @@ namespace B2Framework
             public static string Combine(string path1, string path2)
             {
                 return System.IO.Path.Combine(path1, path2).ToPath();
-            }
-            /// <summary>
-            /// 获取路径扩展名
-            /// </summary>
-            /// <param name="path"></param>
-            /// <returns></returns>
-            public static string GetExtension(string path)
-            {
-                return System.IO.Path.GetExtension(path);
             }
             /// <summary>
             /// 获取文件夹路径

@@ -77,6 +77,25 @@ namespace B2Framework.Editor
             EditorUtility.ClearAssetBundleNames();
         }
 
+        [MenuItem("Assets/LuaToTextAsset")]
+        private static void LuaToTextAsset()
+        {
+            var selection = Selection.GetFiltered<UnityEngine.Object>(SelectionMode.DeepAssets);
+            foreach (var o in selection)
+            {
+                var path = AssetDatabase.GetAssetPath(o);
+                if (string.IsNullOrEmpty(path) || Directory.Exists(path)) continue;
+                var ext = Utility.Path.GetExtension(path, AppConst.LUA_EXTENSIONS.Split(','));
+                if (!string.IsNullOrEmpty(ext) && ext != AppConst.LUA_EXTENSION)
+                {
+                    Utility.Files.RenameFile(path, path.Replace(ext, AppConst.LUA_EXTENSION));
+                    var meta = path + ".meta";
+                    if (File.Exists(meta)) File.Delete(meta);
+                }
+            }
+            AssetDatabase.Refresh();
+        }
+
         [MenuItem("Assets/ClearAssetBundleNames")]
         private static void ClearAssetBundleNames()
         {

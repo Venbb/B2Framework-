@@ -53,6 +53,10 @@
         /// </summary>
         public const string LUA_EXTENSIONS = ".lua,.lua.txt,.lua.bytes";
         /// <summary>
+        /// Lua扩展名
+        /// </summary>
+        public const string LUA_EXTENSION = ".lua.bytes";
+        /// <summary>
         /// 日志打印标签
         /// </summary>
         public const string SYMBOL_DEBUG = "DEBUG_LOG";

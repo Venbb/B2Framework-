@@ -10,7 +10,7 @@ namespace B2Framework.Editor
 {
     public static class LuaScriptTemplate
     {
-        const string DEFAULT_NAME = "NewLua.lua";
+        const string DEFAULT_NAME = "NewLua" + AppConst.LUA_EXTENSION;
         const string TEMPLATE_PATH = "Assets/B2Framework/Scripts/Editor/Template/luatemplate.lua";
 
         // [MenuItem("Assets/Create/Lua Script", false, 80)]

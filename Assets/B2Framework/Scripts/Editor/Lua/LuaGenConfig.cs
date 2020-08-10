@@ -97,9 +97,6 @@ namespace B2Framework.Editor
             typeof(Action<LuaTable, float, float>),
             typeof(Action<LuaTable, float>),
             typeof(Action<LuaTable, string, string>),
-            typeof(UnityEngine.SceneManagement.SceneManager),
-            typeof(UnityEngine.Events.UnityAction<UnityEngine.SceneManagement.Scene, UnityEngine.SceneManagement.LoadSceneMode>),
-            typeof(UnityEngine.Events.UnityAction<UnityEngine.SceneManagement.Scene>),
             typeof(UnityEngine.Events.UnityAction),
             typeof(System.Collections.IEnumerator),
             typeof(System.Action<UnityEngine.GameObject, int>)

@@ -81,17 +81,17 @@ namespace B2Framework
         private static byte[] CustomLoader(ref string filepath)
         {
             string scriptPath = string.Empty;
-            filepath = filepath.Replace(".", "/") + ".lua";
+            filepath = filepath.Replace(".", "/") + AppConst.LUA_EXTENSION;
 
 
             if (!Utility.Assets.runtimeMode)
             {
-                scriptPath = Path.Combine(AppConst.LUA_SCRIPTS_PATH, filepath);
+                scriptPath = Utility.Path.Combine(AppConst.LUA_SCRIPTS_PATH, filepath);
 
                 return Utility.Files.ReadAllBytes(scriptPath);
             }
 
-            scriptPath = Utility.Assets.GetAssetPath(AssetBundles.Lua, filepath) + ".bytes";
+            scriptPath = Utility.Assets.GetAssetPath(AssetBundles.Lua, filepath);
             var request = Assets.LoadAsset(scriptPath, typeof(TextAsset));
             if (!string.IsNullOrEmpty(request.error))
             {
