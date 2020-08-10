@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plist version="1.0">
+  <dict>
+    <key>method</key>
+    <string>ad-hoc</string>
+    <key>provisioningProfiles</key>
+    <dict>
+      <key>com.shaco.test</key>
+      <string>USE_CRI_WARE;USE_LOCAL_DATA;USE_SERVER_ENCRYPTOR;APP_SERVER_STG;APP_DEBUG_LOG;DEBUG_LOG;BILIBILISDK;HOTFIX_ENABLE</string>
+    </dict>
+    <key>uploadBitcode</key>
+    <false />
+  </dict>
+</plist>

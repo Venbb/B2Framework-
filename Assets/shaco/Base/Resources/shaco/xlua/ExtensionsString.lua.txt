@@ -1,0 +1,426 @@
+function string.IsNullOrEmpty(value)
+	return CS.System.String.IsNullOrEmpty(value)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToByte(defalutValue, throwError) 
+	if (self == nil) then error("string:ToByte error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToByte(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToSByte(defalutValue, throwError) 
+	if (self == nil) then error("string:ToSByte error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToSByte(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToInt(defalutValue, throwError)
+	if (self == nil) then error("string:ToInt error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToInt(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToUInt(defalutValue, throwError) 
+	if (self == nil) then error("string:ToUInt error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToUInt(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToShort(defalutValue, throwError) 
+	if (self == nil) then error("string:ToShort error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToShort(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToUShort(defalutValue, throwError) 
+	if (self == nil) then error("string:ToUShort error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToUShort(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToLong(defalutValue, throwError) 
+	if (self == nil) then error("string:ToLong error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToLong(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToULong(defalutValue, throwError) 
+	if (self == nil) then error("string:ToULong error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToULong(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToFloat(defalutValue, throwError) 
+	if (self == nil) then error("string:ToFloat error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToFloat(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToDouble(defalutValue, throwError) 
+	if (self == nil) then error("string:ToDouble error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToDouble(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToDecimal(defalutValue, throwError) 
+	if (self == nil) then error("string:ToDecimal error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToDecimal(self, defalutValue, throwError)
+end
+
+---@param defalutValue number
+---@param throwError boolean
+---@return string
+function string:ToChar(defalutValue, throwError) 
+	if (self == nil) then error("string:ToChar error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToChar(self, defalutValue, throwError)
+end
+
+---@param defalutValue boolean
+---@param throwError boolean
+---@return string
+function string:ToBool(defalutValue, throwError) 
+	if (self == nil) then error("string:ToBool error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or 0
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToBool(self, defalutValue, throwError)
+end
+
+---@param defalutValue System.DateTime
+---@param throwError boolean
+---@return string
+function string:ToDateTime(defalutValue, throwError) 
+	if (self == nil) then error("string:ToDateTime error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	defalutValue = defalutValue or CS.System.DateTime()
+	throwError = throwError or true
+	return CS.shaco_ExtensionsString.ToDateTime(self, defalutValue, throwError)
+end
+
+---@return string
+function string:ToType() 
+	if (self == nil) then error("string:ToType error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.ToType(self)
+end
+
+---@param enumType System.Enum
+---@return string
+function string:ToEnum(enumType)
+	if (self == nil) then error("string:ToEnum error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	if (enumType == nil) then error("string:ToEnum: enum type is nil, str=" .. tostring(self)) end 
+	return xlua.get_generic_method(CS.shaco_ExtensionsString, 'ToEnum')(enumType)(self)
+end
+
+---@return System.Byte[]
+function string:ToByteArray() 
+	if (self == nil) then error("string:ToByteArray error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.ToByteArray(self)
+end
+
+---@return string
+function string:ToStringArray() 
+	if (self == nil) then error("string:ToStringArray error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.ToStringArray(self)
+end
+
+---@return string
+function string:ToStringArrayUTF8() 
+	if (self == nil) then error("string:ToStringArrayUTF8 error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.ToStringArrayUTF8(self)
+end
+
+---@return string
+function string:ToBase64UrlString() 
+	if (self == nil) then error("string:ToBase64UrlString error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.ToBase64UrlString(self)
+end
+
+---@param secret string
+---@return System.Byte[]
+function string:EncryptWithHmacSha1(secret)
+	if (self == nil) then error("string:EncryptWithHmacSha1 error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.EncryptWithHmacSha1(self, secret)
+end
+
+---@param symbol string
+---@param startIndex number
+---@return string
+function string:ParseUntilSymbols(symbol, startIndex)
+	if (self == nil) then error("string:ParseUntilSymbols error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	startIndex = startIndex or 0
+	return CS.shaco_ExtensionsString.ParseUntilSymbols(self, symbol, startIndex)
+end
+
+---@param removeStr string
+---@param throwError boolean
+---@return string
+function string:Remove(removeStr, throwError) 
+	if (self == nil) then error("string:Remove error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	throwError = throwError or false
+	return CS.shaco_ExtensionsString.Remove(self, removeStr, throwError)
+end
+
+---@param removeStr string
+---@return string
+function string:RemoveAll(removeStr) 
+	if (self == nil) then error("string:RemoveAll error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.Remove(self, removeStr)
+end
+
+---@param startStr string
+---@param endStr string
+---@param startIndex number
+---@return string
+function string:RemoveSubstring(startStr, endStr, startIndex) 
+	if (self == nil) then error("string:RemoveSubstring error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	startIndex = startIndex or 0
+	return CS.shaco_ExtensionsString.RemoveSubstring(self, startStr, endStr, startIndex)
+end
+
+---@param startIndex number
+---@param endIndex number
+---@param ... args
+---@return string
+function string:RemoveAnnotation(startIndex, endIndex, ...)
+	if (self == nil) then error("string:RemoveAnnotation error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	local ignoreFlags = { ... }
+	return CS.shaco_ExtensionsString.RemoveAnnotation(self, startIndex, endIndex, ignoreFlags)
+end
+
+---@param perLength number
+---@return string
+function string:SplitEqualLength(perLength) 
+	if (self == nil) then error("string:Split error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.Split(self, perLength)
+end
+
+---@param startIndex number
+---@param endIndex number
+---@param find string
+---@return string
+function string:RemoveRangeIfHave(startIndex, endIndex, find) 
+	if (self == nil) then error("string:RemoveRangeIfHave error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.RemoveRangeIfHave(self, startIndex, endIndex, find)
+end
+
+---@param pattern string
+---@return string
+function string:Split(pattern)
+	if (self == nil) then error("string:Split error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.Split(self, pattern)
+end
+
+---@param newStr string
+---@param startIndex number
+---@param length number
+---@return string
+function string:ReplaceWithIndex(newStr, startIndex, length)
+	if (self == nil) then error("string:Replace error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.Replace(self, newStr, startIndex, length)
+end
+
+---@param oldValue string
+---@param newValue string
+---@param maxReplaceCount number
+---@return string
+function string:ReplaceFromBegin(oldValue, newValue, maxReplaceCount)
+	if (self == nil) then error("string:ReplaceFromBegin error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.ReplaceFromBegin(self, oldValue, newValue, maxReplaceCount)
+end
+
+---@param oldValue string
+---@param newValue string
+---@param maxReplaceCount number
+---@return string
+function string:ReplaceFromEnd(oldValue, newValue, maxReplaceCount)
+	if (self == nil) then error("string:ReplaceFromEnd error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.ReplaceFromEnd(self, oldValue, newValue, maxReplaceCount)
+end
+
+---@param oldValue string
+---@param newValue string
+---@return string
+function string:Replace(oldValue, newValue)
+	if (self == nil) then error("string:Replace error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return self:gsub(oldValue, newValue)
+end
+
+---@param find string
+---@param offsetIndex number
+---@return string
+function string:RemoveFront(find, offsetIndex)
+	if (self == nil) then error("string:RemoveFront error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	offsetIndex = offsetIndex or 0
+	return CS.shaco_ExtensionsString.RemoveFront(self, find, offsetIndex)
+end
+
+---@param find string
+---@param offsetIndex number
+---@return string
+function string:RemoveBehind(find, offsetIndex)
+	if (self == nil) then error("string:RemoveBehind error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	offsetIndex = offsetIndex or -1
+	return CS.shaco_ExtensionsString.RemoveBehind(self, find, offsetIndex)
+end
+
+---@param split string
+---@return string
+function string:ToSplit(split)
+	if (self == nil) then error("string:ToSplit error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.ToSplit(self, split)
+end
+
+---@param other string
+---@return string
+function string:ContactPath(other) 
+	if (self == nil) then error("string:ContactPath error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.ContactPath(self, other)
+end
+
+---@param pathLevel number
+---@return string
+function string:RemoveLastPathByLevel(pathLevel) 
+	if (self == nil) then error("string:RemoveLastPathByLevel error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.RemoveLastPathByLevel(self, pathLevel)
+end
+
+---@param flag string
+---@return string
+function string:RemoveLastFlag(flag) 
+	if (self == nil) then error("string:RemoveLastFlag error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	flag = flag or CS.shaco.Base.FileDefine.PATH_FLAG_SPLIT
+	return CS.shaco_ExtensionsString.RemoveLastFlag(self, flag)
+end
+
+---@param startIndex number
+---@param endIndex number
+---@param offsetIndex number
+---@return string
+function string:Substring(startIndex, endIndex, offsetIndex) 
+	if (self == nil) then error("string:Substring error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	offsetIndex = offsetIndex or 0
+return CS.shaco_ExtensionsString.Substring(self, startIndex, endIndex, offsetIndex)
+end
+
+---@param addString string
+---@return string
+function string:AddBehindNotContains(addString) 
+	if (self == nil) then error("string:AddBehindNotContains error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.AddBehindNotContains(self, addString)
+end
+
+---@param flags string
+---@return string
+function string:SplitLineStringRecursive(flags)
+	if (self == nil) then error("string:SplitLineStringRecursive error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.SplitLineStringRecursive(self, flags)
+end
+
+---@return numbers
+function string:GetNumbers() 
+	if (self == nil) then error("string:GetNumbers error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsString.GetNumbers(self)
+end
+
+---@param find string
+---@param startIndex number
+---@return number
+function string:GetAppearCount(find, startIndex) 
+	if (self == nil) then error("string:GetAppearCount error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	startIndex = startIndex or 0
+	return CS.shaco_ExtensionsString.GetAppearCount(self, find, startIndex)
+end
+
+---@return bool
+function string:IsNumber() 
+	if (self == nil) then error("string:IsNumber error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsUtility.IsNumber(self)
+end
+
+---@return void
+function string:CopyToClipBoard() 
+	if (self == nil) then error("string:CopyToClipBoard error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsClassUnity.CopyToClipBoard(self)
+end
+
+---@return CS.UnityEngine.Vector3
+function string:ToVector3() 
+	if (self == nil) then error("string:ToVector3 error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsClassUnity.ToVector3(self)
+end
+
+---@return CS.UnityEngine.Vector3Int
+function string:ToVector3Int() 
+	if (self == nil) then error("string:ToVector3Int error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsClassUnity.ToVector3Int(self)
+end
+
+---@return CS.UnityEngine.Vector2Int
+function string:ToVector2Int() 
+	if (self == nil) then error("string:ToVector2Int error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	return CS.shaco_ExtensionsClassUnity.ToVector2Int(self)
+end
+
+---@param bindTarget CS.UnityEngine.GameObject or CS.UnityEngine.Component
+---@param multiVersionControlRelativePath string
+---@param unloadAllLoadedObjects boolean
+---@return string
+function string:AutoUnLoad(bindTarget, multiVersionControlRelativePath, unloadAllLoadedObjects)
+	if (self == nil) then error("string:AutoUnLoad error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	unloadAllLoadedObjects = unloadAllLoadedObjects or true
+	return CS.shaco_ExtensionsUnityObjectPool.AutoUnLoad(self, bindTarget, multiVersionControlRelativePath, unloadAllLoadedObjects)
+end
+
+---@param bindTarget CS.UnityEngine.GameObject or CS.UnityEngine.Component
+---@param unloadAllLoadedObjects boolean
+---@return string
+function string:AutoUnLoad(bindTarget, unloadAllLoadedObjects)
+	if (self == nil) then error("string:AutoUnLoad error: This is the member method. Please use 'xxx:method' instead of 'xxx.method'") end
+	unloadAllLoadedObjects = unloadAllLoadedObjects or true
+	return CS.shaco_ExtensionsUnityObjectPool.AutoUnLoad(self, bindTarget, CS.System.String.Empty, unloadAllLoadedObjects)
+end

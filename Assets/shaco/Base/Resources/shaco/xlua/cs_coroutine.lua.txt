@@ -1,0 +1,16 @@
+local util = require 'xlua.util'
+
+local gameInitComponent = CS.UnityEngine.GameObject.FindObjectOfType(typeof(CS.shaco.GameInitComponent))
+if nil == gameInitComponent then
+	gameInitComponent = CS.shaco.GameEntry.GetComponentInstance(typeof(CS.shaco.GameInitComponent))
+end
+
+return {
+	start = function(...)
+	    return gameInitComponent:StartCoroutine(util.cs_generator(...))
+	end;
+
+	stop = function(coroutine)
+	    gameInitComponent:StopCoroutine(coroutine)
+	end
+}

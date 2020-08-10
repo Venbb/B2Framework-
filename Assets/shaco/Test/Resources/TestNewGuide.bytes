@@ -1,0 +1,19 @@
+
+{
+    "steps" : [
+        {
+            "firstGuideStepID" : "一个引导步骤",
+            "sub_steps"        : [
+                "{\"type\":\"shaco.GuideStepUGUIButtonClick\",\"value\":\"{\\\"guideStepID\\\":\\\"一个引导步骤\\\",\\\"firstStepID\\\":\\\"一个引导步骤\\\",\\\"isOpen\\\":true,\\\"_buttonTarget\\\":\\\"Canvas/button_step_1,\\\"}\"}",
+                "{\"type\":\"shaco.Test.TestGuideStepShowImage\",\"value\":\"{\\\"guideStepID\\\":\\\"测试步骤，随便转一下图片动画\\\",\\\"firstStepID\\\":\\\"一个引导步骤\\\",\\\"isOpen\\\":false,\\\"sprite\\\":\\\"Assets/Test/Resources/icon-1024.png,92af577af06e34fe19cb3383e5a9b887\\\",\\\"parentGameObject\\\":\\\"Canvas/TestParent,\\\",\\\"chineseDecription2\\\":\\\"我是一条可以修改的中文说明\\\",\\\"_serializeValue\\\":\\\"序列化数据\\\",\\\"chineseDecription1\\\":\\\"我是一条只读的中文说明\\\\n打开，旋转跳跃，我闭着眼~\\\"}\"}",
+                "{\"type\":\"shaco.GuideStepUGUIButtonClick\",\"value\":\"{\\\"guideStepID\\\":\\\"点击按钮2\\\",\\\"firstStepID\\\":\\\"一个引导步骤\\\",\\\"isOpen\\\":false,\\\"_buttonTarget\\\":\\\"Canvas/button_step_2,\\\"}\"}"
+            ]
+        },
+        {
+            "firstGuideStepID" : "需要点击按钮后才停止动画",
+            "sub_steps"        : [
+                "{\"type\":\"shaco.Test.TestGuideStepRotate\",\"value\":\"{\\\"guideStepID\\\":\\\"需要点击按钮后才停止动画\\\",\\\"firstStepID\\\":\\\"需要点击按钮后才停止动画\\\",\\\"isOpen\\\":true,\\\"button\\\":\\\"Canvas/button_step_other,\\\"}\"}"
+            ]
+        }
+    ]
+}

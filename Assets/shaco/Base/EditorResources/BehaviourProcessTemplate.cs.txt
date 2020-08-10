@@ -1,0 +1,19 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace shaco.BehaviourProcess
+{
+    public class #ClassName# : shaco.Base.IBehaviourProcess
+    {
+        public IEnumerator<shaco.Base.IBehaviourEnumerator> Process(shaco.Base.BehaviourTree tree)
+		{
+			yield return null;
+		}
+
+        public void Dispose()
+        {
+
+        }
+    }
+}

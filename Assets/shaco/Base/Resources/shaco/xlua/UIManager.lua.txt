@@ -1,0 +1,84 @@
+shaco.lua.UIManager = {}
+
+---@param uiType CS.System.Type
+---@param arg CS.shaco.Base.BaseEventArg
+---@return CS.UnityEngine.Component
+function shaco.lua.UIManager.OpenUI(uiType, arg) 
+	return xlua.get_generic_method(CS.shaco.UIManager, 'OpenUI')(uiType)(CS.shaco.GameHelper.ui, arg)
+end
+
+---@param uiType CS.System.Type
+function shaco.lua.UIManager.HideUI(uiType) 
+	xlua.get_generic_method(CS.shaco.UIManager, 'HideUI')(uiType)(CS.shaco.GameHelper.ui)
+end
+
+---@param uiType CS.System.Type
+function shaco.lua.UIManager.CloseUI(uiType) 
+	xlua.get_generic_method(CS.shaco.UIManager, 'CloseUI')(uiType)(CS.shaco.GameHelper.ui)
+end
+
+---@param uiType CS.System.Type
+---@param arg CS.shaco.Base.BaseEventArg
+function shaco.lua.UIManager.RefreshUI(uiType, arg) 
+	xlua.get_generic_method(CS.shaco.UIManager, 'RefreshUI')(uiType)(CS.shaco.GameHelper.ui, arg)
+end
+
+---@param uiType CS.System.Type
+function shaco.lua.UIManager.BringToFront(uiType) 
+	xlua.get_generic_method(CS.shaco.UIManager, 'BringToFront')(uiType)(CS.shaco.GameHelper.ui)
+end
+
+---@param uiType CS.System.Type
+---@param target CS.UnityEngine.Component | CS.UnityEngine.GameObject
+function shaco.lua.UIManager.HideUITarget(uiType, target) 
+	xlua.get_generic_method(CS.shaco.UIManager, 'HideUITarget')(uiType)(CS.shaco.GameHelper.ui, target)
+end
+
+---@param uiType CS.System.Type
+---@param target CS.UnityEngine.Component | CS.UnityEngine.GameObject
+function shaco.lua.UIManager.CloseUITarget(uiType, target) 
+	xlua.get_generic_method(CS.shaco.UIManager, 'CloseUITarget')(uiType)(CS.shaco.GameHelper.ui, target)
+end
+
+---@param uiType CS.System.Type
+---@param preloadCount number 
+function shaco.lua.UIManager.PreLoadUI(uiType, preloadCount)
+	preloadCount = preloadCount or 1 
+	xlua.get_generic_method(CS.shaco.UIManager, 'PreLoadUI')(uiType)(CS.shaco.GameHelper.ui, preloadCount)
+end
+
+---@param uiType CS.System.Type
+function shaco.lua.UIManager.PreLoadUIOnlyOne(uiType) 
+	xlua.get_generic_method(CS.shaco.UIManager, 'PreLoadUIOnlyOne')(uiType)(CS.shaco.GameHelper.ui)
+end
+
+---@param uiType CS.System.Type
+---@return number
+function shaco.lua.UIManager.GetPreLoadUICount(uiType) 
+	return xlua.get_generic_method(CS.shaco.UIManager, 'GetPreLoadUICount')(uiType)(CS.shaco.GameHelper.ui)
+end
+
+---@param uiType CS.System.Type
+---@param onlyActivedUI boolean
+---@return CS.UnityEngine.Componnet
+function shaco.lua.UIManager.GetUIComponent(uiType, onlyActivedUI) 
+	onlyActivedUI = onlyActivedUI or true
+	return xlua.get_generic_method(CS.shaco.UIManager, 'GetUIComponent')(uiType)(CS.shaco.GameHelper.ui, onlyActivedUI)
+end
+
+---@param uiType CS.System.Type
+---@param onlyActivedUI boolean
+---@return CS.UnityEngine.Componnet[]
+function shaco.lua.UIManager.GetUIComponents(uiType, onlyActivedUI) 
+	onlyActivedUI = onlyActivedUI or true
+	return xlua.get_generic_method(CS.shaco.UIManager, 'GetUIComponents')(uiType)(CS.shaco.GameHelper.ui, onlyActivedUI)
+end
+
+---@param uiType CS.System.Type
+---@param onlyActivedUI boolean
+---@return string
+function shaco.lua.UIManager.SetLayerAttributeOn(uiType, isOn) 
+	xlua.get_generic_method(CS.shaco.UIManager, 'SetLayerAttributeOn')(uiType)(CS.shaco.GameHelper.ui, uiType, isOn)
+end
+
+return shaco.lua.UIManager

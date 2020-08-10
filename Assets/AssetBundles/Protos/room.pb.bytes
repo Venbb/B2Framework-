@@ -1,0 +1,27 @@
+
+“
+
+room.protoroomcommon.proto"4
+req_join_match"
+battle_type (:0R
+battleType"}
+rsp_join_match
+result (:0Rresult,
+player (2.common.match_playerRplayer"
+battle_type (:0R
+battleType"g
+ntf_join_match_mateinfo
+result (:0Rresult1
+	mate_list (2.common.match_playerRmateList"…
+ntf_join_match_result
+result (:0Rresult%
+battle_svr_id (:0RbattleSvrId
+	battle_id (:0RbattleId1
+	mate_list (2.common.match_playerRmateList3
+
+enemy_list (2.common.match_playerR	enemyList"
+battle_type (:0R
+battleType"
+req_cancel_join_match"2
+rsp_cancel_join_match
+result (:0Rresult

@@ -1,0 +1,21 @@
+
+š
+login.protologincommon.proto"7
+test2
+c (:0Rc
+ss (2.common.test3Rss"4
+test1
+a (:0Ra
+b (2.login.test2Rb""
+	req_login
+flag (:0Rflag"¹
+	rsp_login
+result (:0Rresult
+	game_time (:0RgameTime
+status (:0Rstatus4
+client_info (2.common.client_infoR
+clientInfo 
+test (2.login.test1Rtest"'
+
+ntf_logout
+reason (:0Rreason

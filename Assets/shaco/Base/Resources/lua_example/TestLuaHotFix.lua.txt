@@ -1,0 +1,234 @@
+function HotFix(...)
+    print "HotFix begin"
+
+    try {
+        function()
+            --修复函数测试
+            xlua.hotfix(
+                CS.shaco.Test.TestLuaHotFix,
+                "TestFunction",
+                function(self, a, b)
+                    return a
+                end
+            )
+        end,
+        catch {
+            function(errors)
+                error(
+                    "如需对c#代码进行热更新，请按照以下步骤\n1、开启HOTFIX_ENABLE宏\n2、执行菜单XLua/Generate Code\n3、等待编译完毕后，执行菜单XLua/Hotfix Inject In Editor"
+                )
+            end
+        }
+    }
+
+    --修复函数测试，允许调用原函数
+    local util = require "xlua.util"
+    util.hotfix_ex(
+        CS.shaco.Test.TestLuaHotFix,
+        "TestFunction2",
+        function(self, a)
+            self:TestFunction2(a)
+            Debug.Log("call lua TestFunction2")
+        end
+    )
+
+    print "HotFix Add end"
+
+    --修复协程方法测试
+    local coroutineIndex = 0
+    xlua.hotfix(
+        CS.shaco.Test.TestLuaHotFix,
+        {
+            LoopCallBack = function(self)
+                --协程方法的修复需要在[CSharpCallLua]属性中手动加入System.Collections.IEnumerator
+                --详细见shaco.HotfixCfg已经手动添加
+                return util.cs_generator(
+                    function()
+                        while true do
+                            local waitTmp = CS.UnityEngine.WaitForSeconds(1)
+                            coroutine.yield(waitTmp)
+                            print("----------lua LoopCallBack---------" .. tostring(coroutineIndex))
+                            coroutineIndex = coroutineIndex + 1
+                        end
+                    end
+                )
+            end
+        }
+    )
+
+    --xlua调用Unity c#方法测试
+    xlua.hotfix(
+        CS.shaco.Test.TestLuaHotFix,
+        "getLog",
+        function(self)
+            CS.shaco.Base.Utility.GetEplaseTime()
+
+            --数组测试
+            print("<<<<<<<<<<test list ........ 1>>>>>>>>>>")
+            self.ListTest:Add(1)
+            self.ListTest:Add(3)
+            self.ListTest:Add(2)
+
+            for i = 0, self.ListTest.Count - 1 do
+                print(self.ListTest[i])
+            end
+            print("<<<<<<<<<<test list ........ 2>>>>>>>>>>")
+            for k, v in pairs(self.ListTest) do
+                print(k, v)
+            end
+
+            --普通回调测试
+            print("<<<<<<<<<<test normal callback>>>>>>>>>>")
+            local function tmpCallBack()
+                return "get a lua log"
+            end
+            self.getlogcallback = tmpCallBack
+
+            --泛型回调测试
+            --参数需要在XLuaManager中加入对应类型，例如System.Action<byte[]>
+            print("<<<<<<<<<<test genric callback>>>>>>>>>>")
+            local pathTmp =
+                CS.shaco.Base.FileHelper.ContactPath(
+                CS.UnityEngine.Application.dataPath,
+                "shaco/Base/Resources/GameHelperConfig.bytes"
+            )
+            if (CS.UnityEngine.Application.platform ~= CS.UnityEngine.RuntimePlatform.WebGLPlayer) then
+                --webgl平台不允许多线程
+                CS.shaco.Base.FileHelper.ReadAllByUserPathAsync(
+                    pathTmp,
+                    function(bytes)
+                        print("read async bytes=====" .. tostring(bytes))
+                    end
+                )
+            else
+                local readBytes = CS.shaco.Base.FileHelper.ReadAllByUserPath(pathTmp)
+                print("read bytes=====" .. tostring(readBytes))
+            end
+
+            --访问Unity函数测试
+            print("<<<<<<<<<<test unity function>>>>>>>>>>")
+            local findTmp = self:GetComponent(typeof(CS.shaco.Test.TestLuaHotFix))
+            print(findTmp)
+            print(self:TestFunction(CS.UnityEngine.Vector3(1.5, 2)))
+
+            --访问成员变量测试
+            print("<<<<<<<<<<test unity parameter>>>>>>>>>>")
+            print("lua obj=" .. tostring(self.TextLog.gameObject))
+
+            CS.shaco.Log.Info(
+                "<<<<<<<<<<test unity static funtion[shaco.Log.Info()]>>>>>>>>>>",
+                CS.UnityEngine.Color.white
+            )
+
+            --访问复杂方法 + 可变参数测试
+            print("<<<<<<<<<<test params function>>>>>>>>>>")
+            local actionMove1 = CS.shaco.MoveBy.Create(CS.UnityEngine.Vector3(10, 0), 1.0)
+            local actionMove2 = CS.shaco.MoveBy.Create(CS.UnityEngine.Vector3(10, 0), 1.0)
+            local actinSequeue = CS.shaco.Sequeue.Create(actionMove1, actionMove2, actionMove1:Reverse())
+            local reapeatAction = CS.shaco.Repeat.CreateRepeatForever(actinSequeue)
+            reapeatAction:RunAction(self.TextLog.gameObject)
+
+            --访问Unity扩展方法测试
+            --如果需要访问c#扩展方法，需要在XluaManager中加入[XLua.LuaCallCSharp]属性，详细见shaco.XLuaManager中已经自动化实现
+            print("<<<<<<<<<<test c# extensions function" .. self.TextLog.gameObject:ToTypeString())
+
+            --访问lua重写的基础类型扩展方法测试
+            --因为xlua自动转换了基础数据类型，例如int、bool、string等，如果需要对他们实现扩展方法，则需要手动在lua中写一次
+            --详细见Extensions.lua.txt
+            local str = "101"
+            local str1 = "foldername"
+            local str2 = "filename"
+            local str3 = "abc123ab"
+            print("<<<<<<<<<<test lua extensions 'ToInt' " .. tostring(str:ToInt()) .. ">>>>>>>>>>")
+            print("<<<<<<<<<<test lua extensions 'ContactPath' " .. tostring(str1:ContactPath(str2)) .. ">>>>>>>>>>")
+            local str4 = tostring(str3:Replace("ab", "??"))
+            print("<<<<<<<<<<test lua extensions 'Replace' " .. str4 .. ">>>>>>>>>>")
+            print(
+                "<<<<<<<<<<test lua extensions 'GetAppearCount' " .. tostring(str4:GetAppearCount("??")) .. ">>>>>>>>>>"
+            )
+            print("<<<<<<<<<<test lua extensions 'AutoUnload' " .. tostring(pathTmp:AutoUnLoad(self)) .. ">>>>>>>>>>")
+
+            --泛型集合数据测试
+            --可以通过CreateGenericClass类来创建通用泛型集合
+            --也可以通过xlua提供的集合构造来创建指定类型泛型集合
+            print("<<<<<<<<<<test generic method 1>>>>>>>>>>")
+            local dicGeneric = CS.shaco.CreateGenericClass.Dictionary()
+            -- local dicGeneric = CS.System.Collections.Generic.Dictionary(CS.System.String, CS.UnityEngine.Vector3)
+            -- local listGeneric = CS.System.Collections.Generic.List(CS.System.String)
+            dicGeneric:Add("aa", 1)
+            dicGeneric:Add("bb", 3)
+            dicGeneric:Add(self, "123")
+
+            -- 调用泛型方法存一个数组数据，例如：
+            --                                调用类              方法名        泛型类型(必须为Object)       调用类对象(如果是static方法则此项为空)             参数1         参数2
+            -- xlua.get_generic_method(CS.shaco.Base.DataSave, 'WriteList')(typeof(CS.System.Object))(     shaco.GameHelper.gameConfig       , "test_lua_list", self.list)
+
+            --泛型方法直接调用测试 1
+            print("<<<<<<<<<<test generic method 2>>>>>>>>>>")
+            local uiArgs = CS.shaco.Test.TestArg()
+            xlua.get_generic_method(CS.shaco.UIManager, "OpenUI")(CS.shaco.Test.TestUI_2)(
+                CS.shaco.GameHelper.ui,
+                uiArgs
+            )
+
+            self:AddEvent(
+                typeof(CS.shaco.UIStateChangedEvents.OnUIOpenEvent),
+                function(sender, arg)
+                    print("<<<<<<<<<<test event success>>>>>>>>>> key=" .. tostring(arg.uiKey))
+                    self:Delay(
+                        function()
+                            --测试lua重写的ui方法
+                            print("<<<<<<<<<<test lua override generic function>>>>>>>>>>")
+                            shaco.lua.UIManager.CloseUI(CS.shaco.Test.TestUI_2, uiArgs)
+                        end,
+                        1.0
+                    )
+                end
+            )
+
+            if dicGeneric:ContainsKey(self) == true then
+                print("ContainsKey result = true")
+            else
+                print("ContainsKey result = false")
+            end
+
+            for k, v in pairs(dicGeneric) do
+                print(k, v)
+            end
+
+            --泛型方法直接调用测试 2
+            print("<<<<<<<<<<test generic method 3>>>>>>>>>>")
+            local eventCallBack = CS.shaco.CreateGenericClass.EventCallBack()
+            eventCallBack:AddCallBack(
+                self,
+                function(sender, arg)
+                    print("event callback arg=" .. tostring(arg.value))
+                end
+            )
+            eventCallBack:InvokeAllCallBack(self, CS.shaco.Test.TestArg2())
+
+            --复杂方法调用
+            --ref和out关键字是作为p2、p3、csfunc参数在c#本身的return参数后依次返回
+            local ret, p2, p3, csfunc =
+                self:ComplexFunc(
+                {x = 3, y = "john"},
+                100,
+                function()
+                    print("i am lua callback")
+                end
+            )
+            print("ComplexFunc ret:", ret, p2, p3, csfunc)
+            csfunc()
+
+            --总计消耗的时间
+            print("use time=" .. CS.shaco.Base.Utility.GetEplaseTime().TotalMilliseconds)
+
+            --返回参数测试
+            return self.getlogcallback()
+        end
+    )
+
+    print "HotFix end"
+end
+
+HotFix()

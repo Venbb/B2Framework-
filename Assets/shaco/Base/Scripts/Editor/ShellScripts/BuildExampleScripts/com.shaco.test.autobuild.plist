@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.shaco.test.autobuild.plist</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Volumes/batch_build_example.sh</string>
+	</array>
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict>
+			<key>Weekday</key>
+			<integer>1</integer>
+			<key>Hour</key>
+			<integer>16</integer>
+			<key>Minute</key>
+			<string>0</string>
+		</dict>
+		<dict>
+			<key>Weekday</key>
+			<integer>2</integer>
+			<key>Hour</key>
+			<integer>16</integer>
+			<key>Minute</key>
+			<string>0</string>
+		</dict>
+		<dict>
+			<key>Weekday</key>
+			<integer>3</integer>
+			<key>Hour</key>
+			<integer>16</integer>
+			<key>Minute</key>
+			<string>0</string>
+		</dict>
+		<dict>
+			<key>Weekday</key>
+			<integer>4</integer>
+			<key>Hour</key>
+			<integer>16</integer>
+			<key>Minute</key>
+			<string>0</string>
+		</dict>
+		<dict>
+			<key>Weekday</key>
+			<integer>5</integer>
+			<key>Hour</key>
+			<integer>16</integer>
+			<key>Minute</key>
+			<string>0</string>
+		</dict>
+	</array>
+	<key>StandardOutPath</key>
+	<string>/Users/HDK/Desktop/auto_build_out.log</string>
+	<key>StandardErrorPath</key>
+	<string>/Users/HDK/Desktop/auto_build_error.log</string>
+</dict>
+</plist>

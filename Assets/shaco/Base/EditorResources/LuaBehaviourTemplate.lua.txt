@@ -1,0 +1,30 @@
+﻿__ClassName__ = {}
+
+---@param arg CS.shaco.Base.BaseEventArg
+function __ClassName__.OnUIOpen(arg)
+
+end
+
+function __ClassName__.OnUIClose()
+
+end
+
+-- function __ClassName__.RunOpenAnimation(callbackEnd)
+
+-- end
+
+-- function __ClassName__.RunCloseAnimation(callbackEnd)
+
+-- end
+
+-- function __ClassName__.Start()
+
+-- end
+
+-- function __ClassName__.Update()
+    
+-- end
+
+-- function __ClassName__.OnDestroy()
+
+-- end
