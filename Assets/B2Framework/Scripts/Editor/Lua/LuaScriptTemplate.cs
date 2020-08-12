@@ -1,10 +1,11 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using System;
 using System.IO;
-using UnityEditor.ProjectWindowCallback;
-using System.Text.RegularExpressions;
 using System.Text;
-using System;
+using System.Text.RegularExpressions;
+using B2Framework.Unity;
+using UnityEditor;
+using UnityEditor.ProjectWindowCallback;
+using UnityEngine;
 
 namespace B2Framework.Editor
 {

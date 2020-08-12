@@ -10,5 +10,5 @@ function ReddotManager:ctor(...)
     
 end
 
-#Code#
+--CODE
 return ReddotManager

@@ -19,5 +19,5 @@ MonoBehaviour:
   neverSleep: 1
   language: 2
   runtimeMode: 0
-  buildPlatform: 
+  buildPlatform: Windows64
   downloadURL: http://127.0.0.1/b2

@@ -1,9 +1,6 @@
-﻿using B2Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using B2Framework.Unity;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class SpaceCraft : MonoBehaviour
 {

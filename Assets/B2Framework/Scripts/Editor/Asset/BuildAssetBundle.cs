@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Diagnostics;
-using System;
+using UnityEditor;
+using UnityEngine;
+using B2Framework.Unity;
 
 namespace B2Framework.Editor
 {
@@ -283,7 +282,7 @@ namespace B2Framework.Editor
             AssetDatabase.Refresh();
 
             watch.Stop();
-            Debug.Log("BuildAssetBundles " + watch.ElapsedMilliseconds + " ms.");
+            Log.Debug("BuildAssetBundles " + watch.ElapsedMilliseconds + " ms.");
 
             EditorUtility.ExplorerFolder(buildSettings.outPutPath);
         }

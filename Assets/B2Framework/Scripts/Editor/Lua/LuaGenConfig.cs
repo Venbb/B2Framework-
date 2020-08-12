@@ -75,8 +75,7 @@ namespace B2Framework.Editor
             {
                 List<string> namespaces = new List<string>() // 在这里添加名字空间
                 {
-                    "B2Framework",
-                    "B2Framework.UI"
+                    "B2Framework.Unity",
                 };
                 return (from type in Assembly.Load("Assembly-CSharp").GetTypes()
                         where type.Namespace != null && namespaces.Contains(type.Namespace)

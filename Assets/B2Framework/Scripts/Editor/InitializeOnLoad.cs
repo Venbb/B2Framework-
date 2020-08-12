@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Diagnostics;
+using B2Framework.Unity;
 
 namespace B2Framework.Editor
 {
@@ -27,7 +28,7 @@ namespace B2Framework.Editor
             // Debug.Log("System.Environment.CurrentDirectory:"+System.Environment.CurrentDirectory);
 
             // Editor模式下，指定加载资源的方法
-            Utility.Assets.loadHander = AssetDatabase.LoadAssetAtPath;
+            GameUtility.Assets.loadHander = AssetDatabase.LoadAssetAtPath;
             // 设置当前语言
             Localization.SwitchLanguage(settings.language, false);
             // Debug.Log(Application.systemLanguage);

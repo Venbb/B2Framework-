@@ -1,9 +1,8 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
-using B2Framework;
-using System;
+using B2Framework.Unity;
 
 namespace B2Framework.Editor
 {
@@ -44,7 +43,7 @@ namespace B2Framework.Editor
         /// <returns></returns>
         public static BundleManifest GetManifest()
         {
-            var path = Utility.Assets.manifestFilePath;
+            var path = GameUtility.Assets.manifestFilePath;
             return EditorUtility.GetScriptAsset<BundleManifest>(path);
         }
         /// <summary>
@@ -161,7 +160,7 @@ namespace B2Framework.Editor
             var assetBundleManifest = BuildPipeline.BuildAssetBundles(outputPath, builds, options, targetPlatform);
             if (assetBundleManifest == null)
             {
-                Debug.LogError("no assetbundle !!"); return;
+                Log.Error("no assetbundle !!"); return;
             }
             // 获取所有AssetBundleName
             var bundleNames = assetBundleManifest.GetAllAssetBundles();
@@ -180,7 +179,7 @@ namespace B2Framework.Editor
                 var path = Utility.Text.Format("{0}/{1}", outputPath, bundleName);
                 if (!File.Exists(path))
                 {
-                    Debug.LogError(path + " file not exsit.");
+                    Log.Error(path + " file not exsit.");
                     continue;
                 }
                 using (var stream = File.OpenRead(path))
@@ -292,7 +291,7 @@ namespace B2Framework.Editor
                     len = bundle.len,
                 });
             }
-            var ver = new B2Framework.Version();
+            var ver = new B2Framework.Unity.Version();
             ver.ver = versionCode;
             ver.files = files;
 
@@ -313,7 +312,7 @@ namespace B2Framework.Editor
             System.Version version;
             if (!System.Version.TryParse(bundleVersion, out version))
             {
-                Debug.Log("bundleVersion is empty!!!!");
+                Log.Debug("bundleVersion is empty!!!!");
                 return bundleVersion;
             }
             // 递增版本号，最后一位自动+1
@@ -375,7 +374,7 @@ namespace B2Framework.Editor
                 case BuildTarget.WebGL:
                     return "";
                 default:
-                    Debug.Log("Target not implemented.");
+                    Log.Debug("Target not implemented.");
                     return null;
             }
         }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+using B2Framework.Unity;
 
 namespace B2Framework.Editor
 {
@@ -53,7 +54,7 @@ namespace B2Framework.Editor
                         var path = string.IsNullOrEmpty(filenameProperty.stringValue) ? "" : FindFilePath(filenameProperty.stringValue.Replace('.', '/'));
                         if (!string.IsNullOrEmpty(path))
                         {
-                            Debug.Log(path);
+                            Log.Debug(path);
                             EditorUtility.PingObject(path);
                         }
                     }

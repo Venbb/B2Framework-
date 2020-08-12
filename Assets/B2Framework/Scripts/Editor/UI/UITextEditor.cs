@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using B2Framework.UI;
+﻿using UnityEditor;
+using B2Framework.Unity;
 
-[CustomEditor(typeof(UIText))]
-public class UITextEditor : UnityEditor.UI.TextEditor
+namespace B2Framework.Editor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(UIText))]
+    public class UITextEditor : UnityEditor.UI.TextEditor
     {
-        UIText component = (UIText)target;
-        base.OnInspectorGUI();
-        component.lc_key = EditorGUILayout.TextField("Loc Key", component.lc_key);   
+        public override void OnInspectorGUI()
+        {
+            UIText component = (UIText)target;
+            base.OnInspectorGUI();
+            component.lc_key = EditorGUILayout.TextField("Loc Key", component.lc_key);
+        }
     }
 }

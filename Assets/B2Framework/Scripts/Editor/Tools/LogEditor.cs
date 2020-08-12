@@ -24,7 +24,7 @@ namespace B2Framework.Editor
         //配置的日志
         private static LogEditorConfig[] _logEditorConfig = new LogEditorConfig[]
         {
-            new LogEditorConfig("Assets/B2Framework/Scripts/Runtime/Base/Log.cs",typeof(global::B2Framework.Debug))
+            new LogEditorConfig("Assets/B2Framework/Scripts/Runtime/Unity/Base/Log/Log.cs",typeof(global::B2Framework.Unity.Log))
         };
 
         //处理从ConsoleWindow双击跳转

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using B2Framework.Unity;
+using UnityEditor;
 using UnityEngine;
 
 namespace B2Framework.Editor

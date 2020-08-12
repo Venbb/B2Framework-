@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
 
 namespace B2Framework.Editor
 {
@@ -70,7 +70,7 @@ namespace B2Framework.Editor
             }
             else
             {
-                Debug.LogError("ExplorerFolder: not found path = " + path);
+                Log.Error("ExplorerFolder: not found path = " + path);
             }
         }
         internal static bool HasScriptingDefineSymbols(string symbol)
@@ -168,11 +168,11 @@ namespace B2Framework.Editor
                         if (onProcess != null) onProcess(done, error ? null : e.Data, error ? e.Data : null);
                         if (error)
                         {
-                            Debug.LogError(e.Data);
+                            Log.Error(e.Data);
                             onProcess = null;
                         }
                         else
-                            Debug.Log(e.Data);
+                            Log.Debug(e.Data);
 
                         if (done)
                         {
@@ -188,7 +188,7 @@ namespace B2Framework.Editor
             }
             catch (System.Exception e)
             {
-                Debug.LogError(e.Message);
+                Log.Error(e.Message);
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using B2Framework.Unity;
 
 namespace B2Framework.Editor
 {
@@ -255,7 +256,7 @@ namespace B2Framework.Editor
                 isDone = succ;
             }, locXlsxPath, locCfgPath, tools.GetLan());
 
-            Debug.Log(tools.GetLan());
+            Log.Debug(tools.GetLan());
         }
         void Update()
         {

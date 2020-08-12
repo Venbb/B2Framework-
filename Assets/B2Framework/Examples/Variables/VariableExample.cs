@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using B2Framework.Unity;
 using UnityEngine;
-using B2Framework;
 public class VariableExample : MonoBehaviour
 {
     public VariableList variables;
