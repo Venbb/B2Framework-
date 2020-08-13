@@ -2,7 +2,7 @@
 
 ## 目录结构
 
-![](https://github.com/Venbb/B2Framework/blob/master/img/image-20200507173919966.png)
+![](https://github.com/Venbb/B2Framework/blob/master/Docs/image-20200507173919966.png)
 
 * Arts 本地资源目录，存放<font color=#ff0000>不热更</font>的所有资源，目录结构与AssetBundles 目录基本一致，一般由美术、策划、程序人员参与管理
   * Animations 动画文件，按照功能在该目录创建子目录自行管理
