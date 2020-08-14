@@ -2,24 +2,24 @@
 
 namespace B2Framework.Unity
 {
-    public partial class Game : MonoBehaviour
+    public partial class Game
     {
-        // [SerializeField]
+        [SerializeField]
         private bool _runtimeMode = false;
 
-        // [SerializeField]
+        [SerializeField]
         private int _frameRate = 30;
 
-        // [SerializeField]
+        [SerializeField]
         private float _gameSpeed = 1f;
 
-        // [SerializeField]
+        [SerializeField]
         private bool _runInBackground = true;
 
-        // [SerializeField]
+        [SerializeField]
         private bool _neverSleep = true;
 
-        // [SerializeField]
+        [SerializeField]
         private GameLanguage _language = GameLanguage.ChineseSimplified;
         /// <summary>
         /// 是否开启运行模式

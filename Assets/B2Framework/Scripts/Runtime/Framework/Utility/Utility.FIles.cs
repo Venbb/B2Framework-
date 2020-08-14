@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Text.RegularExpressions;
 using UnityEngine;
 
 namespace B2Framework
@@ -17,6 +14,30 @@ namespace B2Framework
         /// </summary>
         public static partial class Files
         {
+            /// <summary>
+            /// 文件夹是否可写
+            /// </summary>
+            /// <param name="path"></param>
+            /// <returns></returns>
+            public static bool HasWriteAccess(string path)
+            {
+                if (!Directory.Exists(path)) return false;
+                try
+                {
+                    string tmpFilePath = Path.Combine(path, System.IO.Path.GetRandomFileName());
+                    using (FileStream fs = new FileStream(tmpFilePath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.ReadWrite))
+                    {
+                        StreamWriter writer = new StreamWriter(fs);
+                        writer.Write("1");
+                    }
+                    File.Delete(tmpFilePath);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
             /// <summary>
             /// 获取所有文件路径
             /// </summary>

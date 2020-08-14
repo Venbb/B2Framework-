@@ -6,9 +6,9 @@ namespace B2Framework.Unity
     {
         void Start()
         {
-            The.LuaMgr.Initialize().StartGame();
+            LuaManager.Instance.Initialize().StartGame();
             //就先放这了。。
-            The.sensitiveWordsFilter.AddNewChecker(GameUtility.Assets.GetAssetPath("Localization/SensitiveWords_Chinese.txt"));
+            SensitiveWordsFilter.Instance.AddNewChecker(GameUtility.Assets.GetAssetPath("Localization/SensitiveWords_Chinese.txt"));
         }
     }
 }

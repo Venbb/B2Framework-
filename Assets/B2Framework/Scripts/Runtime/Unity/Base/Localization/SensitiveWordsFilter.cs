@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace B2Framework.Unity
 {
-    public class SensitiveWordsFilter : MonoSingleton<SensitiveWordsFilter>
+    public class SensitiveWordsFilter : MonoSingleton<SensitiveWordsFilter>, IDisposable
     {
         public List<SensitiveWordsChecker> sensitiveWordsCheckerList = new List<SensitiveWordsChecker>();
         public SensitiveWordsFilter()
@@ -21,14 +22,14 @@ namespace B2Framework.Unity
 
         public string Check(string s)
         {
-            for(int i = 0; i < sensitiveWordsCheckerList.Count; ++i)
+            for (int i = 0; i < sensitiveWordsCheckerList.Count; ++i)
             {
                 s = sensitiveWordsCheckerList[i].CheckAndReplace(s);
             }
             return s;
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
             sensitiveWordsCheckerList.Clear();
         }

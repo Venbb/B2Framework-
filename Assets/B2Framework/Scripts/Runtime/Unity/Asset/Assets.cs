@@ -1,6 +1,8 @@
-﻿namespace B2Framework.Unity
+﻿using System;
+
+namespace B2Framework.Unity
 {
-    public partial class Assets : MonoSingleton<Assets>
+    public partial class Assets : MonoSingleton<Assets>, IDisposable
     {
         public ManifestRequest Initialize()
         {
@@ -16,9 +18,9 @@
             UpdateAssets();
             UpdateBundles();
         }
-        public override void Dispose()
+        public void Dispose()
         {
-           Clear();
+            Clear();
         }
     }
 }

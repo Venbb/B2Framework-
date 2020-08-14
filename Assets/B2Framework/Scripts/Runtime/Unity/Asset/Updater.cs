@@ -207,9 +207,9 @@ namespace B2Framework.Unity
                 OnProgress(0);
                 OnMessage("加载游戏场景");
                 
-                The.SceneMgr.UnloadSceneAsync(Scenes.Updater.ToString());
+                ScenesManager.Instance.UnloadSceneAsync(Scenes.Updater.ToString());
 
-                var scene = The.SceneMgr.LoadSceneAsync(Scenes.Login.ToString());
+                var scene = ScenesManager.Instance.LoadSceneAsync(Scenes.Login.ToString());
                 while (!scene.isDone)
                 {
                     OnProgress(scene.progress);

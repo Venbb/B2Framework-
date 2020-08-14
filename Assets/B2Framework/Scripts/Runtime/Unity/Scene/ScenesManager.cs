@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace B2Framework.Unity
 {
-    public sealed class ScenesManager : MonoSingleton<ScenesManager>
+    public sealed class ScenesManager : MonoSingleton<ScenesManager>, IDisposable
     {
         private readonly Dictionary<string, SceneAssetRequest> _loading = new Dictionary<string, SceneAssetRequest>();
         private readonly Dictionary<string, SceneAssetRequest> _loaded = new Dictionary<string, SceneAssetRequest>();
@@ -21,8 +21,8 @@ namespace B2Framework.Unity
                 Completed(sceneName);
                 return this;
             }
-            if (!additive)ReleaseLoaded();
-            
+            if (!additive) ReleaseLoaded();
+
             StartCoroutine(OnLoadSceneAsync(sceneName, additive));
             return this;
         }
@@ -63,7 +63,7 @@ namespace B2Framework.Unity
                 req?.Release();
             _loaded.Clear();
         }
-        public override void Dispose()
+        public void Dispose()
         {
             StopAllCoroutines();
             foreach (var req in _loading.Values)

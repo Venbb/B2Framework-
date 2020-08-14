@@ -139,7 +139,7 @@ namespace B2Framework.Unity
         }
     }
 
-    public class PreloadManager : MonoSingleton<PreloadManager>
+    public class PreloadManager : MonoSingleton<PreloadManager>, IDisposable
     {
         List<ILoader> loaders = new List<ILoader>();
         private bool loading = false;
@@ -201,7 +201,7 @@ namespace B2Framework.Unity
             Loading = true;
         }
 
-        public override void Dispose()
+        public void Dispose()
         {
             loaders.ForEach((o) => o.Unload());
             loaders.Clear();

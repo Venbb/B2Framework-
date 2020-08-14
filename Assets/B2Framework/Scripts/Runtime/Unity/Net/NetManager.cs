@@ -2,12 +2,12 @@
 
 namespace B2Framework.Unity.Net
 {
-    public class NetManager : MonoSingleton<NetManager>
+    public class NetManager : MonoSingleton<NetManager>, IDisposable
     {
         public NetClient client { get; private set; }
         public NetManager Initialize()
         {
-            if (The.platform != "WebGL")
+            if (Game.platform != "WebGL")
                 client = gameObject.AddComponent<NetSocketClient>();
             else
                 client = gameObject.AddComponent<WebSocketClient>();
@@ -41,7 +41,7 @@ namespace B2Framework.Unity.Net
                 client.Close();
             client = null;
         }
-        public override void Dispose()
+        public void Dispose()
         {
             Close();
         }

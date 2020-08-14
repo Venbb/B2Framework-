@@ -154,4 +154,29 @@ namespace B2Framework.Unity
         TextAsset,
         Filename
     }
+    /// <summary>
+    /// 资源更新模式。
+    /// </summary>
+    public enum ResourceMode : byte
+    {
+        /// <summary>
+        /// 未指定。
+        /// </summary>
+        Unspecified = 0,
+
+        /// <summary>
+        /// 单机模式。
+        /// </summary>
+        Package,
+
+        /// <summary>
+        /// 预下载的可更新模式。
+        /// </summary>
+        PreUpdate,
+
+        /// <summary>
+        /// 使用时下载的可更新模式。
+        /// </summary>
+        RuntimeUpdate
+    }
 }

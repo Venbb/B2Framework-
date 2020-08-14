@@ -23,7 +23,7 @@ namespace B2Framework.Unity
         LuaManager luaMgr;
         protected virtual void Initialize()
         {
-            luaMgr = The.LuaMgr;
+            luaMgr = LuaManager.Instance;
             // scriptEnv = luaMgr.CreateTable();
 
             // // scriptEnv.Set("self", this);

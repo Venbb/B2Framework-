@@ -22,7 +22,7 @@ namespace B2Framework.Unity
                 return _instance;
             }
         }
-        internal virtual void Update(float elapseSeconds, float realElapseSeconds) { }
+        internal virtual void Update(float deltaTime, float unscaledDeltaTime) { }
         public virtual void Dispose()
         {
             _instance = null;
@@ -30,7 +30,7 @@ namespace B2Framework.Unity
     }
     public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        private static T _instance;
+        protected static T _instance;
         private static bool _destroyed = false;
         public static T Instance
         {
@@ -61,10 +61,8 @@ namespace B2Framework.Unity
                 DontDestroyOnLoad(gameObject);
             }
         }
-        public abstract void Dispose();
         protected virtual void OnDestroy()
         {
-            Dispose();
             _destroyed = true;
         }
         protected virtual void OnApplicationQuit()

@@ -5,6 +5,58 @@ namespace B2Framework.Unity
     public static partial class GameUtility
     {
         /// <summary>
+        /// wifi或者有线网
+        /// </summary>
+        /// <value></value>
+        public static bool IsWifi
+        {
+            get
+            {
+                return Application.internetReachability == NetworkReachability.ReachableViaLocalAreaNetwork;
+            }
+        }
+        /// <summary>
+        /// 删除对象
+        /// </summary>
+        /// <param name="go"></param>
+        /// <param name="delay"></param>
+        public static void Destroy(GameObject go, float delay = 0)
+        {
+            if (Application.isEditor && !Application.isPlaying)
+            {
+                GameObject.DestroyImmediate(go);
+            }
+            else
+            {
+                GameObject.Destroy(go, delay);
+            }
+        }
+        /// <summary>
+        /// 删除所有子对象
+        /// </summary>
+        /// <param name="go"></param>
+        public static void DestroyChildren(GameObject go)
+        {
+            var tran = go.transform;
+
+            while (tran.childCount > 0)
+            {
+                var child = tran.GetChild(0);
+
+                if (Application.isEditor && !Application.isPlaying)
+                {
+                    child.parent = null; // 清空父, 因为.Destroy非同步的
+                    GameObject.DestroyImmediate(child.gameObject);
+                }
+                else
+                {
+                    GameObject.Destroy(child.gameObject);
+                    // 预防触发对象的OnEnable，先Destroy
+                    child.parent = null; // 清空父, 因为.Destroy非同步的
+                }
+            }
+        }
+        /// <summary>
         /// 获取资源构建平台
         /// </summary>
         /// <param name="platform"></param>

@@ -6,7 +6,7 @@ using XLua;
 
 namespace B2Framework.Unity
 {
-    public class LuaManager : MonoSingleton<LuaManager>
+    public class LuaManager : MonoSingleton<LuaManager>, IDisposable
     {
         private List<LuaBehaviour> luaBehaviours = new List<LuaBehaviour>();
         public void Register(LuaBehaviour behaviour)
@@ -198,7 +198,7 @@ namespace B2Framework.Unity
                 luaRuntime.Send(key, msg);
             }
         }
-        public override void Dispose()
+        public void Dispose()
         {
             Log.Debug("LuaManager:Dispose");
 

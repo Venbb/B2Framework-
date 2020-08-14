@@ -62,7 +62,7 @@ public class SpaceCraft : MonoBehaviour
         cb.maxblood = blood;
         if (isPlayer)
         {
-            The.LuaMgr.Send("craftblood", JsonUtility.ToJson(cb));
+            LuaManager.Instance.Send("craftblood", JsonUtility.ToJson(cb));
         }
     }
 
@@ -224,11 +224,11 @@ public class SpaceCraft : MonoBehaviour
         if (isPlayer)
         {
             cb.nowblood = 0;
-            The.LuaMgr.Send("craftblood", JsonUtility.ToJson(cb));
+            LuaManager.Instance.Send("craftblood", JsonUtility.ToJson(cb));
         }
         if(isBoss)
         {
-            The.LuaMgr.Send("win", "");
+            LuaManager.Instance.Send("win", "");
         }
         GameObject.Find("LittleEnemyCreater").GetComponent<LittleEnemyCreator>().CountDead(gameObject);
         ParticleSystem par = Instantiate<ParticleSystem>(explorer);
@@ -315,7 +315,7 @@ public class SpaceCraft : MonoBehaviour
                 cb.nowblood = blood;
                 if (isPlayer)
                 {
-                    The.LuaMgr.Send("craftblood", JsonUtility.ToJson(cb));
+                    LuaManager.Instance.Send("craftblood", JsonUtility.ToJson(cb));
                 }
                 if (blood <= 0)
                 {

@@ -20,7 +20,7 @@ namespace B2Framework.Unity
         {
             if (scriptEnv != null) Dispose();
 
-            var luaMgr = The.LuaMgr;
+            var luaMgr = LuaManager.Instance;
             scriptEnv = luaMgr.CreateTable();
 
             // scriptEnv.Set("self", this);
