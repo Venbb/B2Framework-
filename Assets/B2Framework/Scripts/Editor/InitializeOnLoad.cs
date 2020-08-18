@@ -58,7 +58,6 @@ namespace B2Framework.Editor
         [RuntimeInitializeOnLoadMethod]
         private static void OnInitialize()
         {
-            // Log.SetHelper(new DefaultLogHelper());
             // var settings = BuildHelper.GetSettings();
             // if (!settings.debugEnable)
             // {

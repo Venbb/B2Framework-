@@ -1,11 +1,8 @@
 ﻿
 namespace B2Framework
 {
-    public static partial class Log
+    public interface ILogHelper
     {
-        public interface ILogHelper
-        {
-            void Log(LogLevel level, object message);
-        }
+        void Log(LogLevel level, object message);
     }
 }

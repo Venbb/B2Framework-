@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Reflection;
-using UnityEngine;
 
 namespace B2Framework.Editor
 {
@@ -11,13 +9,13 @@ namespace B2Framework.Editor
         {
             private static readonly string[] AssemblyNames =
             {
-                "UnityGameFramework.Runtime",
+                "B2Framework",
                 "Assembly-CSharp"
             };
 
             private static readonly string[] EditorAssemblyNames =
             {
-                "UnityGameFramework.Editor",
+                "B2Framework.Editor",
                 "Assembly-CSharp-Editor"
             };
 

@@ -8,6 +8,9 @@ namespace B2Framework
         protected override void Awake()
         {
             base.Awake();
+            
+            Init();
+
             var settings = Resources.Load<Settings>("GameSettings");
 
             frameRate = settings.frameRate;

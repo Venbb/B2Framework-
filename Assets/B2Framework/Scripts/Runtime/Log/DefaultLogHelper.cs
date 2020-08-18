@@ -1,7 +1,7 @@
 ﻿
 namespace B2Framework
 {
-    public class DefaultLogHelper : B2Framework.Log.ILogHelper
+    public class DefaultLogHelper : B2Framework.ILogHelper
     {
         private string Format(object message, LogLevel level)
         {
