@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using B2Framework.Unity;
+using B2Framework;
 
 namespace B2Framework.Editor
 {
@@ -15,7 +15,7 @@ namespace B2Framework.Editor
             {
                 settings.buildPlatform = BuildHelper.GetPlatformName(EditorUserBuildSettings.activeBuildTarget);
             }
-            settings.debugEnable = EditorUtility.HasScriptingDefineSymbols(AppConst.SYMBOL_DEBUG);
+            settings.debugEnable = EditorUtility.HasScriptingDefineSymbols(B2Framework.Log.SYMBOL);
         }
         public override void OnInspectorGUI()
         {
@@ -23,7 +23,7 @@ namespace B2Framework.Editor
 
             if (GUI.changed)
             {
-                EditorUtility.SetScriptingDefineSymbols(AppConst.SYMBOL_DEBUG, settings.debugEnable);
+                EditorUtility.SetScriptingDefineSymbols(B2Framework.Log.SYMBOL, settings.debugEnable);
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using B2Framework.Unity;
+﻿using B2Framework;
 using UnityEditor;
 using UnityEngine;
 

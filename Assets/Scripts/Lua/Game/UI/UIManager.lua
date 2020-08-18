@@ -65,7 +65,7 @@ function UIManager:Show(name, ...)
         go.transform:SetParent(UIRoot.transform)
         go:SetActive(false)
 
-        local LuaBehaviour = go:AddComponent(typeof(UnityB2Framework.LuaBehaviour))
+        local LuaBehaviour = go:AddComponent(typeof(B2Framework.LuaBehaviour))
         LuaBehaviour.metatable = layer
         layer.transform = go.transform
         layer.gameObject = go

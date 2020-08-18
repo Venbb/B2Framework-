@@ -1,4 +1,4 @@
-﻿using B2Framework.Unity;
+﻿using B2Framework;
 using UnityEngine;
 
 public class Test : MonoBehaviour
@@ -6,10 +6,10 @@ public class Test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Log.Debug(string.Format("[Assets]{0}", "???????"));
+        Log.Debug("[Assets]{0}", "???????");
         // Debug.Log("[Assets]{0}", "???????");
-        Log.Debug(string.Format("<color=#ff0000>{0}</color>", "hello world"));
-        Log.Debug(string.Format("<color=yellow>{0}</color>", "welcome to unity"));
+        Log.Debug("<color=#ff0000>{0}</color>", "hello world");
+        Log.Debug("<color=yellow>{0}</color>", "welcome to unity");
         Log.Debug(System.Environment.CurrentDirectory);
         Log.Debug(Application.dataPath);
         Log.Debug(Application.platform.ToString());

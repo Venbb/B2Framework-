@@ -1,5 +1,5 @@
 ﻿using System;
-using B2Framework.Unity;
+using B2Framework;
 using UnityEngine;
 
 public class SpaceCraft : MonoBehaviour

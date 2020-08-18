@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
-using B2Framework.Unity;
+using B2Framework;
 
 namespace B2Framework.Editor
 {
@@ -167,12 +167,12 @@ namespace B2Framework.Editor
         /// <returns></returns>
         internal static string GetAssetBundleName(string name, bool hashName = true)
         {
-            name = name.ToPath();
+            name = Utility.Path.GetRegularPath(name);
             if (hashName)
             {
-                return Utility.Verifier.GetMD5(name) + AppConst.ASSETBUNDLE_VARIANT;
+                return Utility.Verifier.GetMD5(name) + GameConst.ASSETBUNDLE_VARIANT;
             }
-            return name.ToLower() + AppConst.ASSETBUNDLE_VARIANT;
+            return name.ToLower() + GameConst.ASSETBUNDLE_VARIANT;
         }
         internal static string[] GetAssetsPath(string path)
         {

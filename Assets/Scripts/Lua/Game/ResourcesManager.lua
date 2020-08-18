@@ -6,7 +6,7 @@
 -- 封装AssetsMgr,不建议直接访问The.AssetsMgr
 -----------------------------------------------------------
 -- Assets加载管理器
-local Assets = UnityB2Framework.Assets
+local Assets = B2Framework.AssetsManger
 
 local ResourcesManager = class("ResourcesManager")
 

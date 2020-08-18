@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
-using B2Framework.Unity;
+using B2Framework;
 
 namespace B2Framework.Editor
 {
@@ -89,7 +89,7 @@ namespace B2Framework.Editor
         /// <returns></returns>
         public static string GeReleaseOutPutPath(BuildTarget buildTarget)
         {
-            return AppConst.RELEASE_DIR;
+            return GameConst.RELEASE_DIR;
         }
         /// <summary>
         /// 获取AssetBundles输出目录
@@ -97,7 +97,7 @@ namespace B2Framework.Editor
         /// <returns></returns>
         public static string GetAssetBundlesOutPutPath(BuildTarget buildTarget)
         {
-            return Utility.Path.Combine(AppConst.ASSETBUNDLES, BuildHelper.GetPlatformName(buildTarget));
+            return Utility.Path.Combine(GameConst.ASSETBUNDLES, BuildHelper.GetPlatformName(buildTarget));
         }
         /// <summary>
         /// 一键打包
@@ -204,7 +204,8 @@ namespace B2Framework.Editor
             for (int i = 0; i < rules.assets.Length; i++)
             {
                 var item = rules.assets[i];
-                var dir = Path.GetDirectoryName(item.path).ToPath();
+                var dir = Path.GetDirectoryName(item.path);
+                dir = Utility.Path.GetRegularPath(dir);
                 index = dirs.FindIndex(d => d.Equals(dir));
                 if (index == -1)
                 {
@@ -279,7 +280,7 @@ namespace B2Framework.Editor
         /// <param name="versionCode"></param>
         public static void BuildVersions(string outputPath, List<BundleInfo> bundles, int versionCode)
         {
-            var path = outputPath + "/" + AppConst.RES_VER_FILE;
+            var path = outputPath + "/" + GameConst.RES_VER_FILE;
             if (File.Exists(path)) File.Delete(path);
             var files = new List<VFile>();
             foreach (var bundle in bundles)
@@ -291,7 +292,7 @@ namespace B2Framework.Editor
                     len = bundle.len,
                 });
             }
-            var ver = new B2Framework.Unity.Version();
+            var ver = new B2Framework.Version();
             ver.ver = versionCode;
             ver.files = files;
 

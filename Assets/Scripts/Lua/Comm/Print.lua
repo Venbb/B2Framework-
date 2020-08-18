@@ -8,7 +8,7 @@
 -- 如print(string.format("<color=#ff0000>%s</color>", "hello world"))
 -----------------------------------------------------------
 ---
-local log = UnityB2Framework.Log
+local log = B2Framework.Log
 
 local sysp = print
 

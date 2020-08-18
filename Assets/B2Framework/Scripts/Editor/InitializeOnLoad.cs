@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Diagnostics;
-using B2Framework.Unity;
+using B2Framework;
 
 namespace B2Framework.Editor
 {
@@ -58,6 +58,7 @@ namespace B2Framework.Editor
         [RuntimeInitializeOnLoadMethod]
         private static void OnInitialize()
         {
+            // Log.SetHelper(new DefaultLogHelper());
             // var settings = BuildHelper.GetSettings();
             // if (!settings.debugEnable)
             // {

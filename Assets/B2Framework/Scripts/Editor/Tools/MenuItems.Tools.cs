@@ -1,4 +1,4 @@
-﻿using B2Framework.Unity;
+﻿using B2Framework;
 using UnityEditor;
 using UnityEngine;
 
@@ -26,7 +26,7 @@ namespace B2Framework.Editor
         [MenuItem("B2Framework/ExplorerFolder/AssetBundlesPath")]
         static void OpenAssetBundlesPath()
         {
-            EditorUtility.ExplorerFolder(AppConst.ASSETBUNDLES);
+            EditorUtility.ExplorerFolder(GameConst.ASSETBUNDLES);
         }
     }
 }

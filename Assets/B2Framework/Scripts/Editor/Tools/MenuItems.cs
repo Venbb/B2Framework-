@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.IO;
-using B2Framework.Unity;
+using B2Framework;
 
 namespace B2Framework.Editor
 {
@@ -86,10 +86,10 @@ namespace B2Framework.Editor
             {
                 var path = AssetDatabase.GetAssetPath(o);
                 if (string.IsNullOrEmpty(path) || Directory.Exists(path)) continue;
-                var ext = Utility.Path.GetExtension(path, AppConst.LUA_EXTENSIONS.Split(','));
-                if (!string.IsNullOrEmpty(ext) && ext != AppConst.LUA_EXTENSION)
+                var ext = Utility.Path.GetExtension(path, GameConst.LUA_EXTENSIONS.Split(','));
+                if (!string.IsNullOrEmpty(ext) && ext != GameConst.LUA_EXTENSION)
                 {
-                    Utility.Files.RenameFile(path, path.Replace(ext, AppConst.LUA_EXTENSION));
+                    Utility.Files.RenameFile(path, path.Replace(ext, GameConst.LUA_EXTENSION));
                     var meta = path + ".meta";
                     if (File.Exists(meta)) File.Delete(meta);
                 }

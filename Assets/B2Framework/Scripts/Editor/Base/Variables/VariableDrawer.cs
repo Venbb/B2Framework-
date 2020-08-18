@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using B2Framework.Unity;
+using B2Framework;
 
 namespace B2Framework.Editor
 {

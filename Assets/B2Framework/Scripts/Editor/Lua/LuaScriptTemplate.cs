@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using B2Framework.Unity;
+using B2Framework;
 using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace B2Framework.Editor
 {
     public static class LuaScriptTemplate
     {
-        const string DEFAULT_NAME = "NewLua" + AppConst.LUA_EXTENSION;
+        const string DEFAULT_NAME = "NewLua" + GameConst.LUA_EXTENSION;
         const string TEMPLATE_PATH = "Assets/B2Framework/Scripts/Editor/Template/luatemplate.lua";
 
         // [MenuItem("Assets/Create/Lua Script", false, 80)]

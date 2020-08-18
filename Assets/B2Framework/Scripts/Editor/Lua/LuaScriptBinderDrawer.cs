@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using B2Framework.Unity;
+using B2Framework;
 
 namespace B2Framework.Editor
 {
@@ -69,9 +69,9 @@ namespace B2Framework.Editor
                         if (obj != null)
                         {
                             var path = AssetDatabase.GetAssetPath(obj.GetInstanceID());
-                            if (Utility.Path.IsExtension(path, AppConst.LUA_EXTENSIONS.Split(',')))
+                            if (Utility.Path.IsExtension(path, GameConst.LUA_EXTENSIONS.Split(',')))
                             {
-                                var start = AppConst.LUA_SCRIPTS_PATH;
+                                var start = GameConst.LUA_SCRIPTS_PATH;
                                 int idx = path.IndexOf(start);
                                 if (idx == -1)
                                 {
@@ -95,7 +95,7 @@ namespace B2Framework.Editor
         }
         string FindFilePath(string filter)
         {
-            var files = Utility.Files.GetFiles(Application.dataPath, AppConst.LUA_SCRIPTS_PATH);
+            var files = Utility.Files.GetFiles(Application.dataPath, GameConst.LUA_SCRIPTS_PATH);
             for (int i = 0; i < files.Length; i++)
             {
                 if (files[i].Contains(filter)) return files[i];

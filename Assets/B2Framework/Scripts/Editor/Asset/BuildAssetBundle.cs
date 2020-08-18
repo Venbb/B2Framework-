@@ -2,7 +2,7 @@
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using B2Framework.Unity;
+using B2Framework;
 
 namespace B2Framework.Editor
 {
@@ -275,7 +275,7 @@ namespace B2Framework.Editor
             // 复制到StreamingAssets
             if (buildSettings.copytostreamingAssets)
             {
-                var dest = Utility.Path.Combine(Application.streamingAssetsPath, AppConst.ASSETBUNDLES);
+                var dest = Utility.Path.Combine(Application.streamingAssetsPath, GameConst.ASSETBUNDLES);
                 if (!Directory.Exists(dest)) Directory.CreateDirectory(dest);
                 EditorUtility.CopyAssets(buildSettings.outPutPath, dest);
             }

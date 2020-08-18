@@ -66,6 +66,8 @@ namespace B2Framework.Editor
             typeof(UnityEngine.UI.GridLayoutGroup),
             typeof(UnityEngine.UI.ContentSizeFitter),
             typeof(UnityEngine.UI.Slider),
+
+            // typeof(B2Framework.Log)
         };
         // 动态配置
         [LuaCallCSharp]
@@ -75,7 +77,7 @@ namespace B2Framework.Editor
             {
                 List<string> namespaces = new List<string>() // 在这里添加名字空间
                 {
-                    "B2Framework.Unity",
+                    "B2Framework",
                 };
                 return (from type in Assembly.Load("Assembly-CSharp").GetTypes()
                         where type.Namespace != null && namespaces.Contains(type.Namespace)
