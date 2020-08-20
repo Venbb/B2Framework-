@@ -3,9 +3,8 @@ using UnityEngine;
 
 namespace B2Framework
 {
-    public partial class Game : MonoBehaviour
+    public partial class Game : MonoSingleton<Game>
     {
-        public static Game instance { get; private set; }
         /// <summary>
         /// 当前平台
         /// Unity3D 平台宏定义:https://docs.unity3d.com/Manual/PlatformDependentCompilation.html

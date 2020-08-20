@@ -267,6 +267,16 @@ PrefabInstance:
       propertyPath: m_DebugEnable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6182692713784940401, guid: 7431caf1d6166cf45beab62064c3dc2e,
+        type: 3}
+      propertyPath: m_RuntimeMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6182692713784940401, guid: 7431caf1d6166cf45beab62064c3dc2e,
+        type: 3}
+      propertyPath: m_BuildPlatform
+      value: Windows64
+      objectReference: {fileID: 0}
     - target: {fileID: 6182692713784940403, guid: 7431caf1d6166cf45beab62064c3dc2e,
         type: 3}
       propertyPath: m_Name

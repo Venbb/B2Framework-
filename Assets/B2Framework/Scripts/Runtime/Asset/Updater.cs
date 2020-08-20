@@ -294,7 +294,7 @@ namespace B2Framework
         }
         private void Quit()
         {
-            Game.instance.Restart();
+            Game.Instance.Restart();
         }
     }
 }

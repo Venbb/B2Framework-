@@ -7,40 +7,40 @@ namespace B2Framework
     {
         // 用于lock块的对象,使用 双重锁确保单例在多线程初始化时的线程安全性
         private static readonly object _synclock = new object();
-        private static T _instance;
+        private static T m_instance;
         public static T Instance
         {
             get
             {
-                if (_instance == null)
+                if (m_instance == null)
                 {
                     lock (_synclock)
                     {
-                        _instance = Activator.CreateInstance<T>();//new T();
+                        m_instance = Activator.CreateInstance<T>();//new T();
                     }
                 }
-                return _instance;
+                return m_instance;
             }
         }
         internal virtual void Update(float deltaTime, float unscaledDeltaTime) { }
         public virtual void Dispose()
         {
-            _instance = null;
+            m_instance = null;
         }
     }
     public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
     {
-        protected static T _instance;
-        private static bool _destroyed = false;
+        protected static T m_instance;
+        protected static bool _destroyed = false;
         public static T Instance
         {
             get
             {
-                if (_instance == null && !_destroyed)
+                if (m_instance == null && !_destroyed)
                 {
-                    _instance = Create();
+                    m_instance = Create();
                 }
-                return _instance;
+                return m_instance;
             }
         }
         private static T Create()
@@ -51,13 +51,13 @@ namespace B2Framework
         }
         protected virtual void Awake()
         {
-            if (_instance != null)
+            if (m_instance != null)
             {
-                if (_instance != this) DestroyImmediate(gameObject);
+                if (m_instance != this) DestroyImmediate(gameObject);
             }
             else
             {
-                _instance = this as T;
+                m_instance = this as T;
                 DontDestroyOnLoad(gameObject);
             }
         }
@@ -67,9 +67,9 @@ namespace B2Framework
         }
         protected virtual void OnApplicationQuit()
         {
-            if (_instance == null) return;
-            DestroyImmediate(_instance.gameObject);
-            _instance = null;
+            if (m_instance == null) return;
+            DestroyImmediate(m_instance.gameObject);
+            m_instance = null;
         }
     }
 }

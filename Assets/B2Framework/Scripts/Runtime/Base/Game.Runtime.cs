@@ -5,10 +5,9 @@ namespace B2Framework
     public partial class Game
     {
         private float _pauseSpeed;
-        void Awake()
+        protected override void Awake()
         {
-            instance = this;
-
+            base.Awake();
             Init();
             Application.lowMemory += OnLowMemory;
             Log.Debug("llllll");
@@ -84,18 +83,20 @@ namespace B2Framework
             UnityEditor.EditorApplication.isPlaying = false;
 #endif
         }
-        void OnDestroy()
+        protected override void OnDestroy()
         {
             Game.SceneMgr?.Dispose();
-            instance = null;
+            m_instance = null;
+            base.OnDestroy();
         }
         /// <summary>
         /// 游戏退出时调用
         /// </summary>
-        void OnApplicationQuit()
+        protected override void OnApplicationQuit()
         {
             Application.lowMemory -= OnLowMemory;
             StopAllCoroutines();
+            base.OnApplicationQuit();
         }
         /// <summary>
         /// 低内存时的处理逻辑
