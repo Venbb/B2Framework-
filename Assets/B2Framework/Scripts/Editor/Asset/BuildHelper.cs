@@ -12,14 +12,6 @@ namespace B2Framework.Editor
     public static class BuildHelper
     {
         /// <summary>
-        /// 构建全局配置文件
-        /// </summary>
-        public static Settings GetSettings()
-        {
-            var path = "Assets/Resources/GameSettings.asset";
-            return EditorUtility.GetScriptAsset<Settings>(path);
-        }
-        /// <summary>
         /// 打包规则
         /// </summary>
         /// <returns></returns>
@@ -176,7 +168,7 @@ namespace B2Framework.Editor
             {
                 var bundleName = bundleNames[i];
                 var deps = assetBundleManifest.GetAllDependencies(bundleName);
-                var path = Utility.Text.Format("{0}/{1}", outputPath, bundleName);
+                var path = string.Format("{0}/{1}", outputPath, bundleName);
                 if (!File.Exists(path))
                 {
                     Log.Error(path + " file not exsit.");
@@ -364,12 +356,12 @@ namespace B2Framework.Editor
             switch (target)
             {
                 case BuildTarget.Android:
-                    return Utility.Text.Format("{0}-{1}.apk", name, time);
+                    return string.Format("{0}-{1}.apk", name, time);
                 case BuildTarget.iOS:
-                    return Utility.Text.Format("{0}-{1}.ipa", name, time);
+                    return string.Format("{0}-{1}.ipa", name, time);
                 case BuildTarget.StandaloneWindows:
                 case BuildTarget.StandaloneWindows64:
-                    return Utility.Text.Format("{0}-{1}.exe", name, time);
+                    return string.Format("{0}-{1}.exe", name, time);
                 case BuildTarget.StandaloneOSX:
                     return name + ".app";
                 case BuildTarget.WebGL:
@@ -381,7 +373,7 @@ namespace B2Framework.Editor
         }
         private static string GetVersion()
         {
-            return Utility.Text.Format("{0}.{1}", PlayerSettings.bundleVersion, GetBuildRules().version);
+            return string.Format("{0}.{1}", PlayerSettings.bundleVersion, GetBuildRules().version);
         }
     }
 }

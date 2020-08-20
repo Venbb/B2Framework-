@@ -23,8 +23,8 @@ namespace B2Framework.Net
             this.onReceive = onReceive;
             this.onFailed = onFailed;
 
-            // string _uri = Utility.Text.Format("ws://{0}:{1}/", host, port);
-            var url = Utility.Text.Format("{0}:{1}/", host, port);
+            // string _uri = string.Format("ws://{0}:{1}/", host, port);
+            var url = string.Format("{0}:{1}/", host, port);
             _socket = new WebSocket(new Uri(url));
             _socket.m_onConnect = () =>
             {

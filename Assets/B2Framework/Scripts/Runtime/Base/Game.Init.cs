@@ -11,15 +11,20 @@ namespace B2Framework
         /// <summary>
         /// 初始化脚本
         /// </summary>
-        public void Init()
+        protected void Init()
         {
-            var watch = new System.Diagnostics.Stopwatch();
-            watch.Start();
+            Application.targetFrameRate = frameRate;
+            Time.timeScale = gameSpeed;
+            Application.runInBackground = runInBackground;
+            Screen.sleepTimeout = neverSleep ? SleepTimeout.NeverSleep : SleepTimeout.SystemSetting;
+
+            GameUtility.Assets.runtimeMode = runtimeMode;
+            GameUtility.Assets.platform = buildPlatform;
+            GameUtility.Assets.downloadURL = downloadURL;
 
             InitLogHelper();
 
-            watch.Stop();
-            Log.Debug("InitLogHelper " + watch.ElapsedMilliseconds + " ms.");
+            Log.Debug(buildPlatform);
         }
         /// <summary>
         /// 初始化日志打印
@@ -43,12 +48,12 @@ namespace B2Framework
             var type = Utility.Assembly.GetType(typeName);
             if (type == null)
             {
-                throw new Exception(Utility.Text.Format("Can not find log helper type '{0}'.", typeName));
+                throw new Exception(string.Format("Can not find log helper type '{0}'.", typeName));
             }
             T instance = (T)Activator.CreateInstance(type);
             if (instance == null)
             {
-                throw new Exception(Utility.Text.Format("Can not create log helper instance '{0}'.", typeName));
+                throw new Exception(string.Format("Can not create log helper instance '{0}'.", typeName));
             }
             return instance;
         }

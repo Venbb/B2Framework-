@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbde127d76a61046a1697fda2a83cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_LogHelperTypeName: 
   _runtimeMode: 0
   _frameRate: 30
   _gameSpeed: 1

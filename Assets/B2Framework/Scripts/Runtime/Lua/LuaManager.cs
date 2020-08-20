@@ -142,7 +142,7 @@ namespace B2Framework
         /// <returns></returns>
         public object[] LoadScript(string name, string chunkName = "chunk", LuaTable env = null)
         {
-            return DoString(Utility.Text.Format("return require('{0}')", name), chunkName, env);
+            return DoString(string.Format("return require('{0}')", name), chunkName, env);
         }
         /// <summary>
         /// 执行Lua 脚本
@@ -161,7 +161,7 @@ namespace B2Framework
                 }
                 catch (System.Exception ex)
                 {
-                    string msg = Utility.Text.Format("xLua exception : {0}\n {1}", ex.Message, ex.StackTrace);
+                    string msg = string.Format("xLua exception : {0}\n {1}", ex.Message, ex.StackTrace);
                     Log.Error(msg);
                 }
             }
@@ -219,7 +219,7 @@ namespace B2Framework
                 }
                 catch (System.Exception ex)
                 {
-                    string msg = Utility.Text.Format("xLua exception : {0}\n {1}", ex.Message, ex.StackTrace);
+                    string msg = string.Format("xLua exception : {0}\n {1}", ex.Message, ex.StackTrace);
                     Log.Error(msg);
                 }
             }

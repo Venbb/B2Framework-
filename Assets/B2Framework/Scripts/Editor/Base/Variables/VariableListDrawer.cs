@@ -162,7 +162,7 @@ namespace B2Framework.Editor
                 return;
             }
 
-            if (UnityEditor.EditorUtility.DisplayDialog("Confirm delete", Utility.Text.Format("Are you sure you want to delete the item named \"{0}\"?", name), "Yes", "Cancel"))
+            if (UnityEditor.EditorUtility.DisplayDialog("Confirm delete", string.Format("Are you sure you want to delete the item named \"{0}\"?", name), "Yes", "Cancel"))
             {
                 RemoveVariable(variables, index);
             }

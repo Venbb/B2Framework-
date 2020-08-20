@@ -125,7 +125,7 @@ namespace B2Framework
         {
             get
             {
-                return Utility.Text.Format("{0}.{1}", Application.version, ver);
+                return string.Format("{0}.{1}", Application.version, ver);
             }
         }
         public VFile GetFile(string path)

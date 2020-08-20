@@ -47,7 +47,7 @@ namespace B2Framework
                     asset = _request.assetBundle;
                     if (_request.assetBundle == null)
                     {
-                        error = Utility.Text.Format("unable to load assetBundle:{0}", url);
+                        error = string.Format("unable to load assetBundle:{0}", url);
                     }
                     loadState = LoadState.Loaded;
                 }

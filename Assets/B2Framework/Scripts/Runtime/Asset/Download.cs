@@ -120,7 +120,7 @@ namespace B2Framework
         }
         public override string ToString()
         {
-            return Utility.Text.Format("{0}, size:{1}, hash:{2}", url, len, hash);
+            return string.Format("{0}, size:{1}, hash:{2}", url, len, hash);
         }
         #region Override DownloadHandler
         protected override float GetProgress()

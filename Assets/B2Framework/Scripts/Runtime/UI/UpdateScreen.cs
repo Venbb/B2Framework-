@@ -12,7 +12,7 @@ namespace B2Framework
 
         private void Start()
         {
-            version.text = Utility.Text.Format(GameConst.VERSION, "0.0.0.0", "0.0.0.0");
+            version.text = string.Format(GameConst.VERSION, "0.0.0.0", "0.0.0.0");
             var updater = FindObjectOfType<Updater>();
             updater.listener = this;
         }
@@ -35,7 +35,7 @@ namespace B2Framework
 
         public void OnVersion(string ver)
         {
-            version.text = Utility.Text.Format(GameConst.VERSION, ver, ver);;
+            version.text = string.Format(GameConst.VERSION, ver, ver);;
         }
         public void OnClear()
         {

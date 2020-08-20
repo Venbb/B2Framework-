@@ -26,4 +26,16 @@ public class Test : MonoBehaviour
     {
 
     }
+    void OnGUI()
+    {
+        if (GUI.Button(new Rect(100, 100, 100, 50), ""))
+        {
+            var size = string.Empty;
+            GameUtility.Sampling(() =>
+            {
+                size = GameUtility.FormatSize(10000);
+            });
+            Log.Debug(size);
+        }
+    }
 }

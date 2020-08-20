@@ -186,7 +186,7 @@ namespace B2Framework
         }
         private void OnUpdate(long progress, long size, float speed)
         {
-            OnMessage(Utility.Text.Format("下载中...{0}/{1}, 速度：{2}", GameUtility.FormatSize(progress), GameUtility.FormatSize(size), GameUtility.FormatSize(speed, true)));
+            OnMessage(string.Format("下载中...{0}/{1}, 速度：{2}", GameUtility.FormatSize(progress), GameUtility.FormatSize(size), GameUtility.FormatSize(speed, true)));
             OnProgress(progress * 1f / size);
         }
         private void OnComplete()
@@ -206,7 +206,7 @@ namespace B2Framework
                 init.Release();
                 OnProgress(0);
                 OnMessage("加载游戏场景");
-                
+
                 ScenesManager.Instance.UnloadSceneAsync(Scenes.Updater.ToString());
 
                 var scene = ScenesManager.Instance.LoadSceneAsync(Scenes.Login.ToString());
@@ -285,9 +285,8 @@ namespace B2Framework
             }
         }
         private void OnError(bool sure)
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
-            // if (sure) StartUpdate(); else Quit();
+        {       
+            if (sure) StartUpdate(); else Quit();
         }
         private void OnDestroy()
         {
@@ -295,10 +294,7 @@ namespace B2Framework
         }
         private void Quit()
         {
-            if (Application.isEditor)
-                UnityEditor.EditorApplication.isPlaying = false;
-            else
-                Application.Quit();
+            Game.instance.Restart();
         }
     }
 }

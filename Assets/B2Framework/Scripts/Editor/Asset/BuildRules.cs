@@ -169,7 +169,7 @@ namespace B2Framework.Editor
             foreach (var item in bundles)
             {
                 var bundle = item.Key;
-                if (UnityEditor.EditorUtility.DisplayCancelableProgressBar(Utility.Text.Format("分析依赖{0}/{1}", i, max), bundle, i / (float)max)) break;
+                if (UnityEditor.EditorUtility.DisplayCancelableProgressBar(string.Format("分析依赖{0}/{1}", i, max), bundle, i / (float)max)) break;
                 var assetPaths = bundles[bundle];
                 if (assetPaths.Exists(IsScene) && !assetPaths.TrueForAll(IsScene))
                     _conflicted.Add(bundle, assetPaths.ToArray());
@@ -232,7 +232,7 @@ namespace B2Framework.Editor
             int i = 0, max = _conflicted.Count;
             foreach (var item in _conflicted)
             {
-                if (UnityEditor.EditorUtility.DisplayCancelableProgressBar(Utility.Text.Format("优化冲突{0}/{1}", i, max), item.Key, i / (float)max)) break;
+                if (UnityEditor.EditorUtility.DisplayCancelableProgressBar(string.Format("优化冲突{0}/{1}", i, max), item.Key, i / (float)max)) break;
                 var list = item.Value;
                 foreach (var asset in list)
                 {
@@ -244,7 +244,7 @@ namespace B2Framework.Editor
             for (i = 0, max = _duplicated.Count; i < max; i++)
             {
                 var item = _duplicated[i];
-                if (UnityEditor.EditorUtility.DisplayCancelableProgressBar(Utility.Text.Format("优化冗余{0}/{1}", i, max), item, i / (float)max)) break;
+                if (UnityEditor.EditorUtility.DisplayCancelableProgressBar(string.Format("优化冗余{0}/{1}", i, max), item, i / (float)max)) break;
                 OptimizeAsset(item);
             }
         }

@@ -2,28 +2,20 @@
 using System.IO;
 using UnityEditor;
 using UnityEngine;
-using B2Framework;
 
 namespace B2Framework.Editor
 {
     public class BuildAssetBundle : EditorWindow
     {
         bool foldout;
-        Settings settings;
         BuildSettings buildSettings;
         void OnEnable()
         {
             buildSettings = BuildHelper.GetBuildSettings();
-            settings = BuildHelper.GetSettings();
         }
         void Reset()
         {
             buildSettings?.ReSet();
-            if (settings != null)
-            {
-                settings.buildPlatform = BuildHelper.GetPlatformName(buildSettings.buildTarget);
-                AssetDatabase.SaveAssets();
-            }
         }
         void OnGUI()
         {
@@ -48,7 +40,7 @@ namespace B2Framework.Editor
                         {
                             PlayerSettings.companyName = companyName;
                             PlayerSettings.productName = productName;
-                            var identifier = Utility.Text.Format("com.{0}.{1}", companyName?.ToLower(), productName?.ToLower());
+                            var identifier = string.Format("com.{0}.{1}", companyName?.ToLower(), productName?.ToLower());
                             PlayerSettings.SetApplicationIdentifier(EditorUserBuildSettings.selectedBuildTargetGroup, identifier);
                         }
 
@@ -83,7 +75,7 @@ namespace B2Framework.Editor
                         EditorGUILayout.BeginHorizontal();
                         {
                             EditorGUILayout.LabelField(new GUIContent("Bundle Version", "Version + Build. Final release version number."), GUILayout.Width(120f));
-                            GUILayout.Label(Utility.Text.Format("{0}.{1}", buildSettings.version, buildSettings.bundleVersionCode.ToString()));
+                            GUILayout.Label(string.Format("{0}.{1}", buildSettings.version, buildSettings.bundleVersionCode.ToString()));
                         }
                         EditorGUILayout.EndHorizontal();
                     }
@@ -135,11 +127,6 @@ namespace B2Framework.Editor
                 {
                     buildSettings.buildTarget = target;
                     buildSettings.outPutPath = BuildHelper.GetAssetBundlesOutPutPath(target);
-                }
-                if (settings != null)
-                {
-                    settings.buildPlatform = BuildHelper.GetPlatformName(buildSettings.buildTarget);
-                    AssetDatabase.SaveAssets();
                 }
                 GUILayout.Space(10);
                 buildSettings.outPutPath = EditorGUILayout.TextField(new GUIContent("OutPut Path"), buildSettings.outPutPath);

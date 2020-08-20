@@ -76,7 +76,7 @@ namespace B2Framework
                     Parse(textAsset.text);
                 }
                 else
-                    Log.Error(Utility.Text.Format("Load Localization error:{0}", request.error));
+                    Log.Error(string.Format("Load Localization error:{0}", request.error));
                 re.Release();
                 if (completed != null) completed();
                 if (OnLocalize != null) OnLocalize.Invoke();

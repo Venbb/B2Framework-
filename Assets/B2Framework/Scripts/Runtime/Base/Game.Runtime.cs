@@ -5,33 +5,32 @@ namespace B2Framework
     public partial class Game
     {
         private float _pauseSpeed;
-        protected override void Awake()
+        void Awake()
         {
-            base.Awake();
-            
+            instance = this;
+
             Init();
-
-            var settings = Resources.Load<Settings>("GameSettings");
-
-            frameRate = settings.frameRate;
-            gameSpeed = settings.gameSpeed;
-            runInBackground = settings.runInBackground;
-            neverSleep = settings.neverSleep;
-
-            // Application.targetFrameRate = _frameRate;
-            // Time.timeScale = _gameSpeed;
-            // Application.runInBackground = _runInBackground;
-            // Screen.sleepTimeout = _neverSleep ? SleepTimeout.NeverSleep : SleepTimeout.SystemSetting;
-
-            GameUtility.Assets.runtimeMode = settings.runtimeMode;
-
             Application.lowMemory += OnLowMemory;
+            Log.Debug("llllll");
         }
         void Start()
         {
             // 从这里启动游戏
             ScenesManager.Instance.LoadSceneAsync(Scenes.Updater.ToString());
         }
+        // void OnGUI()
+        // {
+        //     if (GUI.Button(new Rect(100, 100, 100, 50), ""))
+        //     {
+        //         var size = string.Empty;
+        //         GameUtility.Sampling(() =>
+        //         {
+        //             for (var i = 0; i < 100; i++)
+        //                 size = GameUtility.FormatSize(10000);
+        //         });
+        //         Log.Debug(size);
+        //     }
+        // }
         /// <summary>
         /// 暂停游戏
         /// </summary>
@@ -56,7 +55,7 @@ namespace B2Framework
         /// </summary>
         public void NormalSpeed()
         {
-            if (_gameSpeed != 1f) gameSpeed = 1f;
+            if (m_GameSpeed != 1f) gameSpeed = 1f;
         }
         /// <summary>
         /// 更新游戏逻辑
@@ -66,27 +65,37 @@ namespace B2Framework
             // TODO:更新游戏逻辑
         }
         /// <summary>
-        /// 退出游戏
+        /// 重启游戏
         /// </summary>
-        public void Quit()
+        public void Restart()
         {
             Destroy(gameObject);
+
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
         }
         /// <summary>
-        /// 被销毁时的处理
+        /// 退出游戏
         /// </summary>
-        protected override void OnDestroy()
+        /// <param name="restart"></param>
+        public void Quit()
         {
-            base.OnDestroy();
+            Application.Quit();
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        }
+        void OnDestroy()
+        {
+            Game.SceneMgr?.Dispose();
+            instance = null;
         }
         /// <summary>
         /// 游戏退出时调用
         /// </summary>
-        protected override void OnApplicationQuit()
+        void OnApplicationQuit()
         {
             Application.lowMemory -= OnLowMemory;
             StopAllCoroutines();
-            base.OnApplicationQuit();
         }
         /// <summary>
         /// 低内存时的处理逻辑
@@ -97,6 +106,9 @@ namespace B2Framework
             // TODO:释放对象池
             // TODO:释放加载的资源
             AssetsManger.UnloadUnusedAssets();
+
+            Resources.UnloadUnusedAssets();
+            System.GC.Collect();
         }
     }
 }

@@ -14,8 +14,6 @@ namespace B2Framework.Editor
         private static void OnEditorInitialize()
         {
             UnityEditor.EditorUtility.ClearProgressBar();
-            // 创建Settings到Resources目录
-            var settings = BuildHelper.GetSettings();
             // 打包规则
             BuildHelper.GetBuildRules();
             // 打包设置
@@ -29,8 +27,6 @@ namespace B2Framework.Editor
 
             // Editor模式下，指定加载资源的方法
             GameUtility.Assets.loadHander = AssetDatabase.LoadAssetAtPath;
-            // 设置当前语言
-            Localization.SwitchLanguage(settings.language, false);
             // Debug.Log(Application.systemLanguage);
             // SystemLanguage.ChineseSimplified
             // Debug.Log(System.Threading.Thread.CurrentThread.CurrentCulture);

@@ -4,6 +4,46 @@ namespace B2Framework
 {
     public static partial class GameUtility
     {
+        public static Vector2 WorldToCanvasPoint(Canvas canvas, Vector3 worldPiont)
+        {
+            var cam = canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera;
+            var screenPoint = RectTransformUtility.WorldToScreenPoint(cam, worldPiont);
+            Vector2 pos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, screenPoint, cam, out pos);
+            return pos;
+        }
+        /// <summary>
+        /// 电池状态
+        /// </summary>
+        /// <returns></returns>
+        public static BatteryStatus GetBatteryStatus()
+        {
+            return SystemInfo.batteryStatus;
+        }
+        /// <summary>
+        /// 电量
+        /// </summary>
+        /// <returns></returns>
+        public static float GetBatteryLevel()
+        {
+            if (Application.isMobilePlatform)
+            {
+                return SystemInfo.batteryLevel;
+            }
+            return 1;
+        }
+        /// <summary>
+        /// 网络是否可用
+        /// </summary>
+        /// <value></value>
+        public static bool NetAvailable
+        {
+            get
+            {
+                return Application.internetReachability != NetworkReachability.NotReachable;
+            }
+        }
+
         /// <summary>
         /// wifi或者有线网
         /// </summary>
@@ -108,6 +148,18 @@ namespace B2Framework
             }
         }
         /// <summary>
+        /// 采样，在Profiler查看性能
+        /// </summary>
+        /// <param name="del"></param>
+        /// <param name="name"></param>
+        public static void Sampling(System.Action del, string name = "Test Sample")
+        {
+            if (del == null) return;
+            UnityEngine.Profiling.Profiler.BeginSample(name);
+            del();
+            UnityEngine.Profiling.Profiler.EndSample();
+        }
+        /// <summary>
         /// 格式化字节大小
         /// </summary>
         /// <param name="size"></param>
@@ -115,19 +167,22 @@ namespace B2Framework
         /// <returns></returns>
         public static string FormatSize(float size, bool speed = false)
         {
+            var str = string.Empty;
             if (size >= GameConst.SIZE_GB)
             {
-                return Utility.Text.Format(speed ? "{0:f2}GB/s" : "{0:f2}GB", size / GameConst.SIZE_GB);
+                str = (size / GameConst.SIZE_GB).ToString("F2") + "GB";
             }
             if (size >= GameConst.SIZE_MB)
             {
-                return Utility.Text.Format(speed ? "{0:f2}MB/s" : "{0:f2}MB", size / GameConst.SIZE_MB);
+                str = (size / GameConst.SIZE_MB).ToString("F2") + "MB";
             }
             if (size >= GameConst.SIZE_KB)
             {
-                return Utility.Text.Format(speed ? "{0:f2}KB/s" : "{0:f2}KB", size / GameConst.SIZE_KB);
+                str = (size / GameConst.SIZE_KB).ToString("F2") + "KB";
             }
-            return Utility.Text.Format(speed ? "{0:f2}B/s" : "{0:f2}B", size);
+            else
+                str = size + "B";
+            return speed ? str + "/s" : str;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using UnityEditor;
 using UnityEngine;
-using B2Framework;
 
 namespace B2Framework.Editor
 {
@@ -90,7 +89,7 @@ namespace B2Framework.Editor
             // for (int i = 0; i < allAssetBundleNames.Length; i++)
             // {
             //     string text = allAssetBundleNames[i];
-            //     EditorUtility.DisplayProgressBar(Utility.Text.Format("Clear AssetBundles {0}/{1}", i, allAssetBundleNames.Length), text, i * 1f / allAssetBundleNames.Length);
+            //     EditorUtility.DisplayProgressBar(string.Format("Clear AssetBundles {0}/{1}", i, allAssetBundleNames.Length), text, i * 1f / allAssetBundleNames.Length);
             //     AssetDatabase.RemoveAssetBundleName(text, true);
             // }
             var assets = AssetDatabase.GetAllAssetPaths();
@@ -108,7 +107,7 @@ namespace B2Framework.Editor
             for (int i = 0; i < max; i++)
             {
                 var asset = assets[i];
-                UnityEditor.EditorUtility.DisplayProgressBar(Utility.Text.Format("Clear AssetBundles {0}/{1}", i, max), asset, i * 1f / max);
+                UnityEditor.EditorUtility.DisplayProgressBar(string.Format("Clear AssetBundles {0}/{1}", i, max), asset, i * 1f / max);
                 var ai = AssetImporter.GetAtPath(asset);
                 if (!string.IsNullOrEmpty(ai.assetBundleName)) ai.assetBundleName = string.Empty;
             }
@@ -126,7 +125,7 @@ namespace B2Framework.Editor
             for (int i = 0; i < max; i++)
             {
                 var asset = AssetDatabase.GetAssetPath(selectedAsset[i]);
-                UnityEditor.EditorUtility.DisplayProgressBar(Utility.Text.Format("Clear AssetBundles {0}/{1}", i, max), asset, i * 1f / max);
+                UnityEditor.EditorUtility.DisplayProgressBar(string.Format("Clear AssetBundles {0}/{1}", i, max), asset, i * 1f / max);
                 AssetImporter ai = AssetImporter.GetAtPath(asset);
                 ai.assetBundleName = string.Empty; //清空文件夹中的资源AB名称
             }

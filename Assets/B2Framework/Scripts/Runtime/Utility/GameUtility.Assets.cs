@@ -220,7 +220,7 @@ namespace B2Framework
             {
                 get
                 {
-                    var path = Utility.Text.Format("{0}.asset", GameConst.BUNDLE_MANIFEST);
+                    var path = string.Format("{0}.asset", GameConst.BUNDLE_MANIFEST);
                     return path = GetAssetPath(AssetBundles.Assets, path);
                 }
             }
@@ -244,7 +244,7 @@ namespace B2Framework
             /// <returns></returns>
             public static string GetAssetPath(AssetBundles bundle, string path)
             {
-                path = Utility.Text.Format("{0}/{1}", bundle, path);
+                path = string.Format("{0}/{1}", bundle, path);
                 return GetAssetPath(path);
             }
             /// <summary>

@@ -4,23 +4,49 @@ namespace B2Framework
 {
     public partial class Game
     {
+        [Header("Base")]
+
+        [Tooltip("是否开启日志")]
         [SerializeField]
-        private bool _runtimeMode = false;
+        private bool m_DebugEnable = true;
+
+        [Tooltip("游戏帧率")]
+        [SerializeField]
+        private int m_FrameRate = 30;
+
+        [Tooltip("游戏速度")]
+        [SerializeField]
+        private float m_GameSpeed = 1f;
+
+        [Tooltip("是否后台运行")]
+        [SerializeField]
+        private bool m_RunInBackground = true;
+
+        [Tooltip("是否永不睡眠")]
+        [SerializeField]
+        private bool m_NeverSleep = true;
+
+        [Tooltip("语言")]
+        [SerializeField]
+        private GameLanguage m_Language = GameLanguage.ChineseSimplified;
+
+        [Header("Assets")]
 
         [SerializeField]
-        private int _frameRate = 30;
+        private bool m_RuntimeMode = false;
 
+        [Tooltip("资源构建平台")]
         [SerializeField]
-        private float _gameSpeed = 1f;
+        private string m_BuildPlatform;
 
+        [Tooltip("资源服务器地址")]
         [SerializeField]
-        private bool _runInBackground = true;
-
-        [SerializeField]
-        private bool _neverSleep = true;
-
-        [SerializeField]
-        private GameLanguage _language = GameLanguage.ChineseSimplified;
+        private string m_DownloadURL = "http://127.0.0.1/b2";
+        public bool debugEnable
+        {
+            get { return m_DebugEnable; }
+            set { m_DebugEnable = value; }
+        }
         /// <summary>
         /// 是否开启运行模式
         /// </summary>
@@ -29,7 +55,7 @@ namespace B2Framework
         {
             get
             {
-                return _runtimeMode = Application.isEditor ? _runtimeMode : true;
+                return m_RuntimeMode = Application.isEditor ? m_RuntimeMode : true;
             }
         }
         /// <summary>
@@ -40,11 +66,11 @@ namespace B2Framework
         {
             get
             {
-                return _frameRate;
+                return m_FrameRate;
             }
             set
             {
-                Application.targetFrameRate = _frameRate = value;
+                Application.targetFrameRate = m_FrameRate = value;
             }
         }
         /// <summary>
@@ -55,7 +81,7 @@ namespace B2Framework
         {
             get
             {
-                return _language;
+                return m_Language;
             }
         }
         /// <summary>
@@ -66,11 +92,11 @@ namespace B2Framework
         {
             get
             {
-                return _gameSpeed;
+                return m_GameSpeed;
             }
             set
             {
-                Time.timeScale = _gameSpeed = value >= 0f ? value : 0f;
+                Time.timeScale = m_GameSpeed = value >= 0f ? value : 0f;
             }
         }
         /// <summary>
@@ -81,7 +107,7 @@ namespace B2Framework
         {
             get
             {
-                return _gameSpeed <= 0f;
+                return m_GameSpeed <= 0f;
             }
         }
         /// <summary>
@@ -91,11 +117,11 @@ namespace B2Framework
         {
             get
             {
-                return _runInBackground;
+                return m_RunInBackground;
             }
             set
             {
-                Application.runInBackground = _runInBackground = value;
+                Application.runInBackground = m_RunInBackground = value;
             }
         }
         /// <summary>
@@ -105,13 +131,30 @@ namespace B2Framework
         {
             get
             {
-                return _neverSleep;
+                return m_NeverSleep;
             }
             set
             {
-                _neverSleep = value;
+                m_NeverSleep = value;
                 Screen.sleepTimeout = value ? SleepTimeout.NeverSleep : SleepTimeout.SystemSetting;
             }
+        }
+        /// <summary>
+        /// 资源构建平台
+        /// </summary>
+        /// <value></value>
+        public string buildPlatform
+        {
+            get { return m_BuildPlatform; }
+            set { m_BuildPlatform = value; }
+        }
+        /// <summary>
+        /// 资源服务器地址
+        /// </summary>
+        /// <value></value>
+        public string downloadURL
+        {
+            get { return m_DownloadURL; }
         }
     }
 }

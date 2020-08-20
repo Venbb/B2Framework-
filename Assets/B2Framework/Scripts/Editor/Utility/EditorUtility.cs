@@ -49,7 +49,7 @@ namespace B2Framework.Editor
             {
                 System.Diagnostics.Process proc = new System.Diagnostics.Process();
                 proc.StartInfo.FileName = externalScriptEditor;
-                proc.StartInfo.Arguments = Utility.Text.Format("-g {0}:{1}:0", fileName, line);
+                proc.StartInfo.Arguments = string.Format("-g {0}:{1}:0", fileName, line);
                 proc.Start();
                 return true;
             }
@@ -127,7 +127,7 @@ namespace B2Framework.Editor
             }
             if (string.IsNullOrEmpty(fileName)) return;
             // 用文件名当透传参数
-            var trans = Utility.Text.Format("{0} Done", System.IO.Path.GetFileNameWithoutExtension(path));
+            var trans = string.Format("{0} Done", System.IO.Path.GetFileNameWithoutExtension(path));
             // 这里就不透传到脚本了，太麻烦，记得在执行完成后输出一下这个参数
             var args = path; //+ " " + trans;
             if (extents.Length > 0)

@@ -92,7 +92,7 @@ namespace B2Framework
                 }
                 catch (System.Exception ex)
                 {
-                    Debug.LogError(Utility.Text.Format("SafeDeleteDir failed! path = {0} with err: {1}", path, ex.Message));
+                    Debug.LogError(string.Format("SafeDeleteDir failed! path = {0} with err: {1}", path, ex.Message));
                     return false;
                 }
             }
@@ -114,7 +114,7 @@ namespace B2Framework
                 }
                 catch (System.Exception ex)
                 {
-                    Debug.LogError(Utility.Text.Format("DeleteFile failed! path = {0} with err: {1}", path, ex.Message));
+                    Debug.LogError(string.Format("DeleteFile failed! path = {0} with err: {1}", path, ex.Message));
                     return false;
                 }
             }
@@ -195,7 +195,7 @@ namespace B2Framework
                 }
                 catch (System.Exception ex)
                 {
-                    Debug.LogError(Utility.Text.Format("RenameFile failed! path = {0} with err: {1}", sourceFileName, ex.Message));
+                    Debug.LogError(string.Format("RenameFile failed! path = {0} with err: {1}", sourceFileName, ex.Message));
                     return false;
                 }
             }
@@ -216,7 +216,7 @@ namespace B2Framework
                 }
                 catch (System.Exception ex)
                 {
-                    Debug.LogError(Utility.Text.Format("ReadAllBytes failed! path = {0} with err = {1}", path, ex.Message));
+                    Debug.LogError(string.Format("ReadAllBytes failed! path = {0} with err = {1}", path, ex.Message));
                     return null;
                 }
             }
@@ -241,7 +241,7 @@ namespace B2Framework
                 }
                 catch (System.Exception ex)
                 {
-                    Debug.LogError(Utility.Text.Format("WriteAllBytes failed! path = {0} with err = {1}", path, ex.Message));
+                    Debug.LogError(string.Format("WriteAllBytes failed! path = {0} with err = {1}", path, ex.Message));
                     return false;
                 }
             }

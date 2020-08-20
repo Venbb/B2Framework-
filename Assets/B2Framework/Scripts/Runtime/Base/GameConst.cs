@@ -3,14 +3,17 @@
     public static partial class GameConst
     {
         /// <summary>
+        /// 2^10
         /// 1K = 1024B
         /// </summary>
         public const long SIZE_KB = 1024;
         /// <summary>
+        /// 2^20
         /// 1M = 1024K
         /// </summary>
         public const long SIZE_MB = 1024 * 1024;
         /// <summary>
+        /// 2^30
         /// 1G = 1024M
         /// </summary>
         public const long SIZE_GB = 1024 * 1024 * 1024;

@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace B2Framework
 {
-    public partial class Game : MonoSingleton<Game>
+    public partial class Game : MonoBehaviour
     {
+        public static Game instance { get; private set; }
         /// <summary>
         /// 当前平台
         /// Unity3D 平台宏定义:https://docs.unity3d.com/Manual/PlatformDependentCompilation.html
@@ -22,6 +23,6 @@ namespace B2Framework
         public static PreloadManager PreloadMgr { get { return PreloadManager.Instance; } }
         public static LuaManager LuaMgr { get { return LuaManager.Instance; } }
         public static NetManager NetMgr { get { return NetManager.Instance; } }
-        public static ScenesManager SceneMgr{ get { return ScenesManager.Instance; } }    
+        public static ScenesManager SceneMgr { get { return ScenesManager.Instance; } }
     }
 }

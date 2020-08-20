@@ -20,14 +20,6 @@ namespace B2Framework.Editor
             LuaScriptTemplate.CreatNewLua();
         }
 
-        [MenuItem("B2Framework/Create/Settings")]
-        public static void CreatSettings()
-        {
-            var target = BuildHelper.GetSettings();
-            Selection.activeObject = target;
-            UnityEditor.EditorUtility.FocusProjectWindow();
-        }
-
         [MenuItem("B2Framework/Create/BuildRules")]
         public static void CreatBuildRules()
         {

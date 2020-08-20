@@ -28,14 +28,14 @@ namespace B2Framework.Editor
 
         public void Init(SerializedObject serializedObject)
         {
-            m_HelperTypeName = serializedObject.FindProperty(Utility.Text.Format("m_{0}HelperTypeName", m_Name));
-            m_CustomHelper = serializedObject.FindProperty(Utility.Text.Format("m_Custom{0}Helper", m_Name));
+            m_HelperTypeName = serializedObject.FindProperty(string.Format("m_{0}HelperTypeName", m_Name));
+            m_CustomHelper = serializedObject.FindProperty(string.Format("m_Custom{0}Helper", m_Name));
         }
 
         public void Draw()
         {
             string displayName = FieldNameForDisplay(m_Name);
-            int selectedIndex = EditorGUILayout.Popup(Utility.Text.Format("{0} Helper", displayName), m_HelperTypeNameIndex, m_HelperTypeNames);
+            int selectedIndex = EditorGUILayout.Popup(string.Format("{0} Helper", displayName), m_HelperTypeNameIndex, m_HelperTypeNames);
             if (selectedIndex != m_HelperTypeNameIndex)
             {
                 m_HelperTypeNameIndex = selectedIndex;
@@ -47,7 +47,7 @@ namespace B2Framework.Editor
                 EditorGUILayout.PropertyField(m_CustomHelper);
                 if (m_CustomHelper.objectReferenceValue == null)
                 {
-                    EditorGUILayout.HelpBox(Utility.Text.Format("You must set Custom {0} Helper.", displayName), MessageType.Error);
+                    EditorGUILayout.HelpBox(string.Format("You must set Custom {0} Helper.", displayName), MessageType.Error);
                 }
             }
         }
