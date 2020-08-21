@@ -10,7 +10,6 @@ namespace B2Framework
             base.Awake();
             Init();
             Application.lowMemory += OnLowMemory;
-            Log.Debug("llllll");
         }
         void Start()
         {
@@ -22,12 +21,22 @@ namespace B2Framework
         //     if (GUI.Button(new Rect(100, 100, 100, 50), ""))
         //     {
         //         var size = string.Empty;
+        //         var go = false;
+        //         // GC
         //         GameUtility.Sampling(() =>
         //         {
-        //             for (var i = 0; i < 100; i++)
-        //                 size = GameUtility.FormatSize(10000);
+        //             // for (var i = 0; i < 100; i++)
+
+        //         });
+
+        //         // 耗时
+        //         Utility.Watch(() =>
+        //         {
+        //             // for (var i = 0; i < 100; i++)
+
         //         });
         //         Log.Debug(size);
+        //         Log.Debug(go);
         //     }
         // }
         /// <summary>

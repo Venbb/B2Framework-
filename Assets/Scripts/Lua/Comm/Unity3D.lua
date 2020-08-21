@@ -10,6 +10,7 @@
 
 -- Unity API
 UnityEngine         = CS.UnityEngine
+Application         = UnityEngine.Application
 GameObject          = UnityEngine.GameObject
 Transform           = UnityEngine.Transform
 Object              = UnityEngine.Object
