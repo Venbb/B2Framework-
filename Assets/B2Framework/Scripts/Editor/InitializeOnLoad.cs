@@ -47,6 +47,25 @@ namespace B2Framework.Editor
             // source = Utility.Zip.Decompress(source);
             // Debug.Log("Decompress " + watch.ElapsedMilliseconds + " ms.");
             // Debug.Log(source);
+
+            //     if (null == stackTmp)
+            //         temp = string.Empty;
+
+            //     var allFrames = stackTmp.GetFrames();
+            //     if (allFrames == null || allFrames.Length < 1)
+            //         temp = string.Empty;
+
+
+            //     var frameTmp = allFrames[0];
+
+            //     //如果使用了dll注入可能会修改堆栈信息获取
+            //     //这个时候只有最后一个frame才有正确的数据
+            //     if (null == frameTmp || string.IsNullOrEmpty(frameTmp.GetFileName()))
+            //     {
+            //         frameTmp = allFrames[allFrames.Length - 1];
+            //     }
+            //    temp =  null == frameTmp || string.IsNullOrEmpty(frameTmp.GetFileName()) ? string.Empty : Utility.Path.GetRegularPath(frameTmp.GetFileName());
+            //     UnityEngine.Debug.Log("OSA:"+temp);
         }
         /// <summary>
         /// 游戏开始运行

@@ -6,7 +6,7 @@ using XLua;
 
 namespace B2Framework
 {
-    public class LuaManager : MonoSingleton<LuaManager>, IDisposable
+    public class LuaManager : MonoSingleton<LuaManager>, IManager
     {
         private List<LuaBehaviour> luaBehaviours = new List<LuaBehaviour>();
         public void Register(LuaBehaviour behaviour)
@@ -39,7 +39,7 @@ namespace B2Framework
             base.Awake();
             InitLuaEnv();
         }
-        public LuaManager Initialize()
+        public IManager Initialize()
         {
             if (luaEnv != null)
             {

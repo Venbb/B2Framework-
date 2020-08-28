@@ -15,7 +15,10 @@ function Timer:ctor(...)
     self.unique = 0
 end
 
--- 延迟执行，执行完成后会自动回收
+--- 延迟执行，执行完成后会自动回收
+--- @param integer sec 延迟执行时间
+--- @param function callback 回调函数
+--- @return number
 function Timer:SetTimeout(sec, callback)
     assert(sec > 0 and callback ~= nil and type(callback) == "function", "SetInterval param error")
     local idx = self.unique + 1
@@ -29,7 +32,10 @@ function Timer:SetTimeout(sec, callback)
     return idx
 end
 
--- 间隔执行
+--- 间隔执行
+--- @param integer sec 间隔时间
+--- @param function callback 回调函数
+--- @return number
 function Timer:SetInterval(sec, callback)
     assert(sec > 0 and callback ~= nil and type(callback) == "function", "SetInterval param error")
     local idx = self.unique + 1
@@ -44,7 +50,8 @@ function Timer:SetInterval(sec, callback)
     return idx
 end
 
--- 移除某个定时器
+--- 移除某个定时器
+--- @param integer unique 计时器索引
 function Timer:Remove(unique)
     local handler = self.handlers[unique]
     if handler then
@@ -53,7 +60,7 @@ function Timer:Remove(unique)
     end
 end
 
--- 清除所有
+--- 清除所有
 function Timer:Clear()
     table.walk(self.handlers, function(v, k)
         CSCoroutine.stop(v)

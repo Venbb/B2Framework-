@@ -2,12 +2,12 @@
 
 namespace B2Framework.Net
 {
-    public class NetManager : MonoSingleton<NetManager>, IDisposable
+    public class NetManager : MonoSingleton<NetManager>, IManager
     {
         public NetClient client { get; private set; }
-        public NetManager Initialize()
+        public IManager Initialize()
         {
-            if (Game.platform != "WebGL")
+            if (GameManager.platform != "WebGL")
                 client = gameObject.AddComponent<NetSocketClient>();
             else
                 client = gameObject.AddComponent<WebSocketClient>();

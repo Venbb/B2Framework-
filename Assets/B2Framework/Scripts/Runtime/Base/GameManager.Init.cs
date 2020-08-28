@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace B2Framework
 {
-    public partial class Game
+    public partial class GameManager: MonoSingleton<GameManager>, IManager
     {
         [SerializeField]
         [HideInInspector]
@@ -11,7 +11,7 @@ namespace B2Framework
         /// <summary>
         /// 初始化脚本
         /// </summary>
-        protected void Init()
+        public IManager Initialize()
         {
             Application.targetFrameRate = frameRate;
             Time.timeScale = gameSpeed;
@@ -24,7 +24,7 @@ namespace B2Framework
 
             InitLogHelper();
 
-            Log.Debug(buildPlatform);
+            return this;
         }
         /// <summary>
         /// 初始化日志打印
@@ -36,8 +36,6 @@ namespace B2Framework
             {
                 Log.SetHelper(Create<ILogHelper>(m_LogHelperTypeName));
             }
-            else
-                Log.SetHelper(new DefaultLogHelper());
         }
         /// <summary>
         /// 通过反射实例化对象

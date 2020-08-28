@@ -1,5 +1,5 @@
 ﻿-----------------------------------------------------------
--- FileName:    Utils.lua
+-- FileName:    functions.lua
 -- Author:      Venbb
 -- date:        2020-05-23 15:55:29
 -- 
@@ -8,50 +8,40 @@
 -- 2、不完全使用Cocos2d-Lua,这里对一些方法进行了改进，或者新增了一些
 -----------------------------------------------------------
 
---[[--
-    检查并尝试转换为数值，如果无法转换则返回 0
-    @param mixed value 要检查的值
-    @param [integer base] 进制，默认为十进制
-    @return number
-]]
+--- 检查并尝试转换为数值，如果无法转换则返回 0
+--- @param mixed value 要检查的值
+--- @param integer base 进制，默认为十进制
+--- @return number
 function checknumber(value, base)
     return tonumber(value, base) or 0
 end
 
---[[--
-    检查并尝试转换为整数，如果无法转换则返回 0
-    @param mixed value 要检查的值
-    @return integer
-]]
+--- 检查并尝试转换为整数，如果无法转换则返回 0
+--- @param mixed value 要检查的值
+--- @return integer
 function checkint(value)
     return math.round(checknumber(value))
 end
 
---[[--
-    检查并尝试转换为布尔值，除了 nil 和 false，其他任何值都会返回 true
-    @param mixed value 要检查的值
-    @return boolean
-]]
+--- 检查并尝试转换为布尔值，除了 nil 和 false，其他任何值都会返回 true
+--- @param mixed value 要检查的值
+--- @return boolean
 function checkbool(value)
     return (value ~= nil and value ~= false)
 end
 
---[[--
-    检查值是否是一个表格，如果不是则返回一个空表格
-    @param mixed value 要检查的值
-    @return table
-]]
+--- 检查值是否是一个表格，如果不是则返回一个空表格
+--- @param mixed value 要检查的值
+--- @return table
 function checktable(value)
     if type(value) ~= "table" then value = {} end
     return value
 end
 
---[[--
-    如果表格中指定 key 的值为 nil，或者输入值不是表格，返回 false，否则返回 true
-    @param table hashtable 要检查的表格
-    @param mixed key 要检查的键名
-    @return boolean
-]]
+--- 如果表格中指定 key 的值为 nil，或者输入值不是表格，返回 false，否则返回 true
+--- @param table hashtable 要检查的表格
+--- @param mixed key 要检查的键名
+--- @return boolean
 function isset(hashtable, key)
     local t = type(hashtable)
     return (t == "table" or t == "userdata") and hashtable[key] ~= nil
@@ -440,16 +430,9 @@ function math.newrandomseed()
     math.random()
 end
 
--- start --
-
---------------------------------
--- 对数值进行四舍五入，如果不是数值则返回 0
--- @function [parent=#math] round
--- @param number value 输入值
--- @return number#number 
-
--- end --
-
+--- 对数值进行四舍五入，如果不是数值则返回 0
+--- @param number value 输入值
+--- @return number 
 function math.round(value)
     value = checknumber(value)
     return math.floor(value + 0.5)

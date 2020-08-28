@@ -2,7 +2,7 @@
 
 namespace B2Framework
 {
-    public partial class Game
+    public partial class GameManager
     {
         [Header("Base")]
 

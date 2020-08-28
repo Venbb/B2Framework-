@@ -43,10 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbde127d76a61046a1697fda2a83cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LogHelperTypeName: 
-  _runtimeMode: 0
-  _frameRate: 30
-  _gameSpeed: 1
-  _runInBackground: 1
-  _neverSleep: 1
-  _language: 2
+  m_LogHelperTypeName: B2Framework.DefaultLogHelper
+  m_DebugEnable: 1
+  m_FrameRate: 30
+  m_GameSpeed: 1
+  m_RunInBackground: 1
+  m_NeverSleep: 1
+  m_Language: 2
+  m_RuntimeMode: 0
+  m_BuildPlatform: Windows64
+  m_DownloadURL: http://127.0.0.1/b2

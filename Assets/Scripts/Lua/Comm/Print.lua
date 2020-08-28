@@ -23,11 +23,19 @@ local sysp = print
 local function doprint(func, ...)
     func = func or sysp
     local getinfo = debug.getinfo(3)
-    local str = string.format("[%s:%d][f:%d][t:%.2f]: ", getinfo.short_src, getinfo.currentline, Time.frameCount, os.clock())
+    -- for k,v in pairs(getinfo) do
+    --     sysp(k, ':', getinfo[k])
+    -- end
+    local path = getinfo.short_src
+    if not string.endwith(path, ".lua") then
+        path = path .. ".lua"
+    end
+    local str = ""
     for i = 1, select('#', ...) do  -->获取参数总数
         local arg = select(i, ...); -->读取参数
         str = str .. tostring(arg) .. "  "
     end
+    str = str .. "\n" .. string.format("@Lua [%s:%d]", path, getinfo.currentline)
     func(str)
 end
 --[[--

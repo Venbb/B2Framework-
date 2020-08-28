@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace B2Framework
 {
-    public sealed class ScenesManager : MonoSingleton<ScenesManager>, IDisposable
+    public sealed class ScenesManager : MonoSingleton<ScenesManager>, IManager
     {
         private readonly Dictionary<string, SceneAssetRequest> _loading = new Dictionary<string, SceneAssetRequest>();
         private readonly Dictionary<string, SceneAssetRequest> _loaded = new Dictionary<string, SceneAssetRequest>();
@@ -12,6 +12,11 @@ namespace B2Framework
         public bool isDone { get; private set; }
         public Action<float> OnProgress { get; set; }
         public Action<string> OnCompleted { get; set; }
+
+        public IManager Initialize()
+        {
+            return this;
+        }
         public ScenesManager LoadSceneAsync(string sceneName, bool additive = true)
         {
             if (_loading.ContainsKey(sceneName)) return this;
@@ -63,15 +68,6 @@ namespace B2Framework
                 req?.Release();
             _loaded.Clear();
         }
-        public void Dispose()
-        {
-            StopAllCoroutines();
-            foreach (var req in _loading.Values)
-                req?.Release();
-            _loading.Clear();
-
-            ReleaseLoaded();
-        }
         private void Progress(float progress)
         {
             this.progress = progress;
@@ -81,6 +77,15 @@ namespace B2Framework
         {
             isDone = true;
             if (OnCompleted != null) OnCompleted(sceneName);
+        }
+        public void Dispose()
+        {
+            StopAllCoroutines();
+            foreach (var req in _loading.Values)
+                req?.Release();
+            _loading.Clear();
+
+            ReleaseLoaded();
         }
     }
 }

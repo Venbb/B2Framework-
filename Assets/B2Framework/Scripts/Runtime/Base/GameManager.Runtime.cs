@@ -2,13 +2,13 @@
 
 namespace B2Framework
 {
-    public partial class Game
+    public partial class GameManager: MonoSingleton<GameManager>, IManager
     {
         private float _pauseSpeed;
         protected override void Awake()
         {
             base.Awake();
-            Init();
+            Initialize();
             Application.lowMemory += OnLowMemory;
         }
         void Start()
@@ -77,8 +77,7 @@ namespace B2Framework
         /// </summary>
         public void Restart()
         {
-            Destroy(gameObject);
-
+            Dispose();
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
         }
         /// <summary>
@@ -94,7 +93,11 @@ namespace B2Framework
         }
         protected override void OnDestroy()
         {
-            Game.SceneMgr?.Dispose();
+            DisposeManagers();
+            SceneMgr?.Dispose();
+            LuaMgr?.Dispose();
+            NetMgr?.Dispose();
+
             m_instance = null;
             base.OnDestroy();
         }
@@ -119,6 +122,10 @@ namespace B2Framework
 
             Resources.UnloadUnusedAssets();
             System.GC.Collect();
+        }
+        public void Dispose()
+        {
+            Destroy(gameObject);
         }
     }
 }

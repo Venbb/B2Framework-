@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace B2Framework
 {
-    public class SensitiveWordsFilter : MonoSingleton<SensitiveWordsFilter>, IDisposable
+    public class SensitiveWordsFilter : MonoSingleton<SensitiveWordsFilter>, IManager
     {
         public List<SensitiveWordsChecker> sensitiveWordsCheckerList = new List<SensitiveWordsChecker>();
         public SensitiveWordsFilter()
@@ -32,6 +32,11 @@ namespace B2Framework
         public void Dispose()
         {
             sensitiveWordsCheckerList.Clear();
+        }
+
+        public IManager Initialize()
+        {
+            return this;
         }
     }
 

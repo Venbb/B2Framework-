@@ -61,7 +61,7 @@
 ]]
 local util = require 'xlua.util'
 
-local behaviour = Game.LuaMgr.luaCoroutine
+local behaviour = GameManager.LuaMgr.luaCoroutine
 
 local CSCoroutine = {}
 

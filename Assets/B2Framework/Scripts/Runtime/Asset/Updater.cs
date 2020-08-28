@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using B2Framework.Net;
-using B2Framework;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -199,7 +197,8 @@ namespace B2Framework
         private IEnumerator StartGame()
         {
             OnMessage("正在初始化");
-            var init = AssetsManger.Instance.Initialize();
+            var assets = AssetsManger.Instance.Initialize() as AssetsManger;
+            var init = assets.LoadManifest();
             yield return init;
             if (string.IsNullOrEmpty(init.error))
             {
@@ -285,7 +284,7 @@ namespace B2Framework
             }
         }
         private void OnError(bool sure)
-        {       
+        {
             if (sure) StartUpdate(); else Quit();
         }
         private void OnDestroy()
@@ -294,7 +293,7 @@ namespace B2Framework
         }
         private void Quit()
         {
-            Game.Instance.Restart();
+            GameManager.Instance.Restart();
         }
     }
 }

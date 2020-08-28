@@ -1,5 +1,4 @@
-﻿
-namespace B2Framework
+﻿namespace B2Framework
 {
     public interface ILogHelper
     {

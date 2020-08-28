@@ -1,11 +1,10 @@
-﻿
-namespace B2Framework
+﻿namespace B2Framework
 {
     public class DefaultLogHelper : B2Framework.ILogHelper
     {
         private string Format(object message, LogLevel level)
         {
-            return string.Format("{0:yyyy-MM-dd HH:mm:ss.fff} [{1}] {2}", level.ToString().ToUpper(), System.DateTime.Now, message != null ? message : "Null");
+            return string.Format("[{0}]{1}", level.ToString().ToUpper(), message != null ? message : "Null");
         }
         public void Log(LogLevel level, object message)
         {

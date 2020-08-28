@@ -139,14 +139,17 @@ namespace B2Framework
         }
     }
 
-    public class PreloadManager : MonoSingleton<PreloadManager>, IDisposable
+    public class PreloadManager : MonoSingleton<PreloadManager>, IManager
     {
         List<ILoader> loaders = new List<ILoader>();
         private bool loading = false;
 
         Dictionary<string, AssetLoader> assets = new Dictionary<string, AssetLoader>();
         Dictionary<string, GameObjectLoader> gameObjects = new Dictionary<string, GameObjectLoader>();
-
+        public IManager Initialize()
+        {
+            return this;
+        }
         private void AddLoader(ILoader loader)
         {
             loaders.Add(loader);
@@ -200,16 +203,6 @@ namespace B2Framework
             loaders.ForEach((o) => o.Load());
             Loading = true;
         }
-
-        public void Dispose()
-        {
-            loaders.ForEach((o) => o.Unload());
-            loaders.Clear();
-
-            assets.Clear();
-            gameObjects.Clear();
-        }
-
         readonly Predicate<ILoader> matchIsDone = delegate (ILoader o) { return o.IsDone(); };
 
         public bool Loading { get { return loading; } private set { loading = value; } }
@@ -239,6 +232,14 @@ namespace B2Framework
                     Loading = false;
                 }
             }
+        }
+        public void Dispose()
+        {
+            loaders.ForEach((o) => o.Unload());
+            loaders.Clear();
+
+            assets.Clear();
+            gameObjects.Clear();
         }
     }
 }

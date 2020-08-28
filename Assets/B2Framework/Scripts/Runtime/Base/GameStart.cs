@@ -6,7 +6,8 @@ namespace B2Framework
     {
         void Start()
         {
-            LuaManager.Instance.Initialize().StartGame();
+            var init = LuaManager.Instance.Initialize() as LuaManager;
+            init.StartGame();
             //就先放这了。。
             SensitiveWordsFilter.Instance.AddNewChecker(GameUtility.Assets.GetAssetPath("Localization/SensitiveWords_Chinese.txt"));
         }

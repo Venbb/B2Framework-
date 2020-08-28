@@ -29,7 +29,7 @@ Plane           = require "Comm.UnityEngine.Plane"
 Time            = require "Comm.UnityEngine.Time"
 
 -- 加载公共库，拆成多个文件是不是有IO消耗?
-require 'Comm.Utils'
+require 'Comm.functions'
 
 -- 对接日志系统，这里对系统的print进行了重写
 require 'Comm.Print'

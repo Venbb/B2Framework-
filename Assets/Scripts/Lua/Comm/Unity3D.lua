@@ -19,5 +19,5 @@ AudioClip           = UnityEngine.AudioClip
 
 -- B2Framework
 B2Framework         = CS.B2Framework                -- CS端框架命名空间
-Game                = B2Framework.Game              -- CS的全局访问接口
+GameManager         = B2Framework.GameManager       -- CS的全局访问接口
 Loc                 = B2Framework.Localization      -- 多语言接口:Loc.Get(key)
