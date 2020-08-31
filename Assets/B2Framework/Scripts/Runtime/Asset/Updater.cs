@@ -206,14 +206,12 @@ namespace B2Framework
                 OnProgress(0);
                 OnMessage("加载游戏场景");
 
-                ScenesManager.Instance.UnloadSceneAsync(Scenes.Updater.ToString());
+                var luaInit = LuaManager.Instance.Initialize() as LuaManager;
+                luaInit.StartGame();
+                //就先放这了。。
+                SensitiveWordsFilter.Instance.AddNewChecker(GameUtility.Assets.GetAssetPath("Localization/SensitiveWords_Chinese.txt"));
 
-                var scene = ScenesManager.Instance.LoadSceneAsync(Scenes.Login.ToString());
-                while (!scene.isDone)
-                {
-                    OnProgress(scene.progress);
-                    yield return null;
-                }
+                ScenesManager.Instance.UnloadSceneAsync(Scenes.Updater.ToString());
             }
             else
             {

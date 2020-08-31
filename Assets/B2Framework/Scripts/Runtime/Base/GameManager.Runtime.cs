@@ -2,7 +2,7 @@
 
 namespace B2Framework
 {
-    public partial class GameManager: MonoSingleton<GameManager>, IManager
+    public partial class GameManager : MonoSingleton<GameManager>, IManager
     {
         private float _pauseSpeed;
         protected override void Awake()

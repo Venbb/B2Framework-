@@ -55,7 +55,6 @@ namespace B2Framework
         Splash,
         Launcher,
         Updater,
-        Login,
         Main,
         Loading,
         Battle,
