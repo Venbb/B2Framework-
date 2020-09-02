@@ -15,7 +15,7 @@
                     UnityEngine.Debug.Log(msg);
                     break;
                 case LogLevel.Info:
-                    UnityEngine.Debug.Log(string.Format("<color=#0000FF>{0}</color>", msg));
+                    UnityEngine.Debug.Log(msg);
                     break;
                 case LogLevel.Warning:
                     UnityEngine.Debug.LogWarning(string.Format("<color=#FFEB04>{0}</color>", msg));

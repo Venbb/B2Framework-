@@ -8,7 +8,7 @@
 local SceneConfig = require("Game.Scenes.SceneConfig")
 local SceneManager = class("SceneManager")
 
-local mgr = GameManager.SceneMgr
+local mgr = Game.sceneMgr
 
 function SceneManager:ctor(...)
     -- TODO:do something on ctor
@@ -36,7 +36,7 @@ function SceneManager:sceneUnloaded(scene)
         self.lastLuaScene = nil
     end
 
-    GameManager.LuaMgr.luaEnv:FullGc()
+    Game.luaMgr.luaEnv:FullGc()
     UnityEngine.Resources.UnloadUnusedAssets()
     CS.System.GC.Collect()
 end

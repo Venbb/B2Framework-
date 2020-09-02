@@ -116,7 +116,7 @@ function UITestDlg1:Awake()
     self._root.Button8.gameObject:GetComponent("Button").onClick:AddListener(function()
         local str = self._root.InputField.gameObject:GetComponent("InputField").text
         print("和谐之前： " , str)
-        print("和谐之之后： " , GameManager.sensitiveWordsFilter:Check(str))
+        print("和谐之之后： " , Game.sensitiveWordsFilter:Check(str))
         UIMgr:Show("UINoticeTip", "请看LOG，界面没地方显示了。")
     end)
 

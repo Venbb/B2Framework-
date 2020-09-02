@@ -4,17 +4,17 @@ using UnityEngine;
 
 namespace B2Framework.Editor
 {
-    [CustomEditor(typeof(GameManager))]
+    [CustomEditor(typeof(Game))]
     public class GameInspector : UnityEditor.Editor
     {
-        GameManager game;
+        Game game;
         private SerializedProperty m_LogHelperTypeName = null;
         private string[] m_LogHelperTypeNames;
         int m_LogHelperTypeNameIndex = 0;
         bool helpersFadeOut = true;
         private void OnEnable()
         {
-            game = (GameManager)target;
+            game = (Game)target;
             game.debugEnable = EditorUtility.HasScriptingDefineSymbols(B2Framework.Log.SYMBOL);
             if (string.IsNullOrEmpty(game.buildPlatform))
             {

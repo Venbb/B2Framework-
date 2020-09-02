@@ -2,7 +2,7 @@
 
 namespace B2Framework
 {
-    public partial class GameManager
+    public partial class Game : MonoBehaviour
     {
         [Header("Base")]
 

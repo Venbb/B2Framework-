@@ -7,7 +7,7 @@ namespace B2Framework.Net
         public NetClient client { get; private set; }
         public IManager Initialize()
         {
-            if (GameManager.platform != "WebGL")
+            if (Game.platform != "WebGL")
                 client = gameObject.AddComponent<NetSocketClient>();
             else
                 client = gameObject.AddComponent<WebSocketClient>();

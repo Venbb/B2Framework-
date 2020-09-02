@@ -20,7 +20,7 @@ function NetManager:ctor(...)
     -- else
     --     self.client = obj:AddComponent(typeof(B2Framework.Net.NetSocketClient))
     -- end
-    local manager = GameManager.NetMgr:Initialize()
+    local manager = Game.netMgr:Initialize()
     self.manager = manager
 end
 -- 发起连接
