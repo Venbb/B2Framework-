@@ -148,18 +148,6 @@ namespace B2Framework
             }
         }
         /// <summary>
-        /// 采样，在Profiler查看性能
-        /// </summary>
-        /// <param name="del"></param>
-        /// <param name="name"></param>
-        public static void Sampling(System.Action del, string name = "Test Sample")
-        {
-            if (del == null) return;
-            UnityEngine.Profiling.Profiler.BeginSample(name);
-            del();
-            UnityEngine.Profiling.Profiler.EndSample();
-        }
-        /// <summary>
         /// 格式化字节大小
         /// </summary>
         /// <param name="size"></param>
@@ -168,20 +156,20 @@ namespace B2Framework
         public static string FormatSize(float size, bool speed = false)
         {
             var str = string.Empty;
-            if (size >= GameConst.SIZE_GB)
+            if (size < GameConst.SIZE_KB)
             {
-                str = (size / GameConst.SIZE_GB).ToString("F2") + "GB";
+                str = size.ToString() + "B";
             }
-            if (size >= GameConst.SIZE_MB)
-            {
-                str = (size / GameConst.SIZE_MB).ToString("F2") + "MB";
-            }
-            if (size >= GameConst.SIZE_KB)
+            if (size < GameConst.SIZE_MB)
             {
                 str = (size / GameConst.SIZE_KB).ToString("F2") + "KB";
             }
+            if (size < GameConst.SIZE_GB)
+            {
+                str = (size / GameConst.SIZE_MB).ToString("F2") + "MB";
+            }
             else
-                str = size + "B";
+                str = (size / GameConst.SIZE_GB).ToString("F2") + "GB";
             return speed ? str + "/s" : str;
         }
     }

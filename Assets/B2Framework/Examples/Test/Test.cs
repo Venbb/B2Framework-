@@ -31,7 +31,7 @@ public class Test : MonoBehaviour
         if (GUI.Button(new Rect(100, 100, 100, 50), ""))
         {
             var size = string.Empty;
-            GameUtility.Sampling(() =>
+            Profiler.Sampling(() =>
             {
                 size = GameUtility.FormatSize(10000);
             });

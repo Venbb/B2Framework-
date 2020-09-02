@@ -31,14 +31,14 @@ namespace B2Framework
                 var size = string.Empty;
                 var go = false;
                 // GC
-                GameUtility.Sampling(() =>
+                Profiler.Sampling(() =>
                 {
                     // for (var i = 0; i < 100; i++)
 
                 });
 
                 // 耗时
-                Utility.Watch(() =>
+                Profiler.Watch(() =>
                 {
                     for (var i = 0; i < 100; i++)
                     {

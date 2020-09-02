@@ -47,7 +47,7 @@ namespace B2Framework
             if (debugEnable)
             {
                 startInitTime = Time.time;
-                startMem = GC.GetTotalMemory(false);
+                startMem = GC.GetTotalMemory(false);// byte
             }
 
             sensitiveWordsFilter = SensitiveWordsFilter.Instance;
