@@ -9,9 +9,10 @@ namespace B2Framework
     /// </summary>
     public class BundleRequest : AssetRequest
     {
+        private readonly List<BundleRequest> _parents = new List<BundleRequest>();
         public readonly List<BundleRequest> dependencies = new List<BundleRequest>();
 
-        public AssetBundle assetBundle
+        public virtual AssetBundle assetBundle
         {
             get { return asset as AssetBundle; }
             internal set { asset = value; }
@@ -29,6 +30,32 @@ namespace B2Framework
             assetBundle.Unload(true);
             assetBundle = null;
         }
+        void ReleaseByBundle(BundleRequest bundle)
+        {
+            if (bundle.url.Equals(url))
+            {
+                base.Release();
+                return;
+            }
+            if (_parents.Contains(bundle))
+            {
+                return;
+            }
+            _parents.Add(bundle);
+            foreach (var child in bundle.dependencies)
+            {
+                ReleaseByBundle(child);
+            }
+        }
+        public override void Release()
+        {
+            base.Release();
+            foreach (var child in dependencies)
+            {
+                ReleaseByBundle(child);
+            }
+            _parents.Clear();
+        }
     }
     /// <summary>
     /// AssetBundle 加载器（异步）
@@ -36,6 +63,22 @@ namespace B2Framework
     public class BundleAsyncRequest : BundleRequest
     {
         private AssetBundleCreateRequest _request;
+        public override AssetBundle assetBundle
+        {
+            get
+            {
+                if (_request != null && !_request.isDone)
+                {
+                    asset = _request.assetBundle;
+                }
+                return base.assetBundle;
+            }
+
+            internal set
+            {
+                base.assetBundle = value;
+            }
+        }
         public override bool isDone
         {
             get

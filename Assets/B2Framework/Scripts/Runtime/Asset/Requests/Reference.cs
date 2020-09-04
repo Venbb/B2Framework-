@@ -29,11 +29,11 @@ namespace B2Framework
             }
             return refCount <= 0;
         }
-        public void Retain()
+        public virtual void Retain()
         {
             refCount++;
         }
-        public void Release()
+        public virtual void Release()
         {
             refCount--;
         }

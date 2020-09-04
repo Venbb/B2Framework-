@@ -26,14 +26,24 @@ namespace B2Framework
                 --i;
             }
 
-            for (var i = 0; i < _unusedAssets.Count; ++i)
+            foreach (var item in _assets)
             {
-                var request = _unusedAssets[i];
-                if (!request.isDone) continue;
-                Log.Debug("UnloadAsset:{0}", request.url);
-                request.Unload();
-                _unusedAssets.RemoveAt(i);
-                i--;
+                if (item.Value.IsUnused() && item.Value.isDone)
+                {
+                    _unusedAssets.Add(item.Value);
+                }
+            }
+            
+            if (_unusedAssets.Count > 0)
+            {
+                for (var i = 0; i < _unusedAssets.Count; i++)
+                {
+                    var request = _unusedAssets[i];
+                    Log.Debug("UnloadAsset:{0}", request.url);
+                    request.Unload();
+                    _assets.Remove(request.url);
+                }
+                _unusedAssets.Clear();
             }
 
             for (int i = 0; i < _scenes.Count; ++i)
@@ -43,7 +53,6 @@ namespace B2Framework
                 _scenes.RemoveAt(i);
                 Log.Debug("UnloadScene:{0}", request.url);
                 request.Unload();
-                UnloadUnusedAssets();
                 --i;
             }
         }
@@ -61,7 +70,7 @@ namespace B2Framework
                 Log.Error("invalid path");
                 return null;
             }
-            
+
             path = GetExistPath(path);
 
             // 同个资源只增加引用计数，并返回当前正在加载的请求

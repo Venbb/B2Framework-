@@ -34,7 +34,7 @@ namespace B2Framework
             {
                 item = assets[i];
 
-                var path = Utility.Path.Combine(dirs[item.dir],item.fileName);
+                var path = Utility.Path.Combine(dirs[item.dir], item.fileName);
                 if (item.bundle >= 0 && item.bundle < bundles.Length)
                 {
                     _assetToBundles[path] = bundles[item.bundle].bundleName;
@@ -91,20 +91,26 @@ namespace B2Framework
                 --i;
             }
 
-            for (var i = 0; i < _unusedBundles.Count; i++)
+            foreach (var item in _bundles)
             {
-                var request = _unusedBundles[i];
-                if (request.isDone)
+                if (item.Value.IsUnused() && item.Value.isDone)
                 {
-                    UnloadDependencies(request);
-                    request.Unload();
-                    Log.Debug("UnloadBundle: " + request.url);
-                    _unusedBundles.RemoveAt(i);
-                    i--;
+                    _unusedBundles.Add(item.Value);
                 }
             }
 
-            _unusedBundles.Clear();
+            if (_unusedBundles.Count > 0)
+            {
+                for (var i = 0; i < _unusedBundles.Count; i++)
+                {
+                    var item = _unusedBundles[i];
+                    UnloadDependencies(item);
+                    item.Unload();
+                    Log.Debug("UnloadBundle: " + item.url);
+                    _bundles.Remove(item.url);
+                } 
+                _unusedBundles.Clear();
+            }
         }
         internal static BundleRequest LoadBundle(string assetBundleName, bool async)
         {
@@ -120,9 +126,12 @@ namespace B2Framework
             BundleRequest request;
             if (_bundles.TryGetValue(url, out request))
             {
-                request.Update();
+                if (!request.isDone && !async)
+                {
+                    var assetBundle = request.assetBundle;
+                    Log.Warning("Bundle is loading:" + assetBundle.name);
+                }
                 request.Retain();
-                _loadingBundles.Add(request);
                 return request;
             }
             if (url.StartsWith("http://", StringComparison.Ordinal) ||

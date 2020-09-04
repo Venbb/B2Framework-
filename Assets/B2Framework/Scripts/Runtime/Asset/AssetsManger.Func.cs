@@ -57,35 +57,8 @@ namespace B2Framework
             Log.Error("找不到资源路径" + path);
             return path;
         }
-        public static void UnloadUnusedAssets()
-        {
-            foreach (var item in _assets)
-            {
-                if (item.Value.IsUnused())
-                {
-                    _unusedAssets.Add(item.Value);
-                }
-            }
-            foreach (var request in _unusedAssets)
-            {
-                _assets.Remove(request.url);
-            }
-            foreach (var item in _bundles)
-            {
-                if (item.Value.IsUnused())
-                {
-                    _unusedBundles.Add(item.Value);
-                }
-            }
-            foreach (var request in _unusedBundles)
-            {
-                _bundles.Remove(request.url);
-            }
-        }
         public static void Clear()
         {
-            UnloadUnusedAssets();
-
             UpdateAssets();
             UpdateBundles();
 

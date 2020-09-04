@@ -121,7 +121,7 @@ namespace B2Framework
             Log.Warning("Low memory reported...");
             // TODO:释放对象池
             // TODO:释放加载的资源
-            AssetsManger.UnloadUnusedAssets();
+            AssetsManger.Clear();
 
             Resources.UnloadUnusedAssets();
             System.GC.Collect();

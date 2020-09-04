@@ -101,15 +101,11 @@ namespace B2Framework
             m_WachterMems.TryGetValue(stopwatch, out lastMem);
 
             stopwatch.Stop(); //  停止监视
-            TimeSpan timespan = stopwatch.Elapsed; //  获取当前实例测量得出的总时间
-            //double seconds = timespan.TotalSeconds;  //  总秒数
-            double millseconds = timespan.TotalMilliseconds;
-            decimal seconds = (decimal)millseconds / 1000m;
 
-            string format = "[Watcher] {0}, Time: {1}s, MemDiff: {2}KB";
+            string format = "[Watcher] {0}, Time: {1}ms, MemDiff: {2}KB";
             var memDiff = GC.GetTotalMemory(false) - lastMem; // byte
             Log.Error(string.Format(format,
-                string.IsNullOrEmpty(name) ? key : name, seconds.ToString("F7"),
+                string.IsNullOrEmpty(name) ? key : name, stopwatch.Elapsed.TotalMilliseconds.ToString("F7"),
                 memDiff / 1000f)); // 7位精度
         }
         /// <summary>
