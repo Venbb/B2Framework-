@@ -1,6 +1,6 @@
 {
-    "name": "person.jianglong.common",
+    "name": "com.B2Framework",
     "version": "1.0.0",
-    "displayName": "Common",
+    "displayName": "B2Framework",
     "description": "This packages provides common resources for unity."
 }
